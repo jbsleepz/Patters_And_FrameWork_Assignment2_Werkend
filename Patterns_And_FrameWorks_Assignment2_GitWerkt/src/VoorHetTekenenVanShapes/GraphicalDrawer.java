@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -21,10 +22,13 @@ import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
+import Domain.CompleteTrain;
+import Domain.Locomotive;
+
 public class GraphicalDrawer extends javax.swing.JFrame implements ActionListener {
 	
 		private JPanel drawPanel, jPanel1, jPanel2, pnlWagons;
-		private JTextPane tpTextTrain;
+		
 		
 		//buttons die je kan aanroepen deleten en toevoegen en selecteren.
 		private JButton btnDeleteWagon1, btnDeleteWagon2 , btnDeleteWagon3, btnDeleteTrain;
@@ -35,7 +39,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		private JTextField tfNewTrain;
 		
 		//Labels voor het tonen van output.
-		private JLabel lbCurrentTrain;
+		private JLabel lbCurrentTrain, tpTextTrain;
 		
 		// ComboBox om de treinen in te vullen.
 		private JComboBox cbAllTrains;
@@ -46,6 +50,14 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		private int currentTrain = -1;
 		private int OFFSET = 100;
 		private int TRAINLENGTH = 100;
+		
+		// aanmaken van relaties voor objecten die aangemaakt gaan worden.
+		GraphicalShapeDrawer shapeDraw = new GraphicalShapeDrawer();
+		TrainShape trainShape = new TrainShape();
+		WagonShape wagonShape = new WagonShape();
+		CompleteTrain completeTrain;
+		ArrayList<Locomotive> trainArray = new ArrayList<Locomotive>();
+		
 		
 		public GraphicalDrawer(){
 			initGUI();
@@ -87,7 +99,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					jPanel2.setLayout(jPanel2Layout);
 					getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 					{
-						tpTextTrain = new JTextPane();
+						tpTextTrain = new JLabel();
 						jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 						jPanel2.setBounds(10, 10, 100, 15);
 						jPanel2Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
@@ -107,10 +119,11 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 						btnNewTrain.addActionListener(this);
 					}
 					{
-						ComboBoxModel cbAllTrainsModel = 
-							new DefaultComboBoxModel(
-									new String[] { });
+						ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[] { });
 						cbAllTrains = new JComboBox();
+						for (Locomotive loco : trainArray){
+							cbAllTrains.addItem(loco.getname());
+						}
 					/*	GridLayout cbAllTrainsLayout = new GridLayout(1, 1);
 						cbAllTrainsLayout.setColumns(1);
 						cbAllTrainsLayout.setHgap(5);
@@ -132,6 +145,9 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 						btnDeleteTrain.addActionListener(this);
 					}
 				}
+				
+				//Scherm rechtsboven om de wagens te gaan tekenen.
+				
 				{
 					pnlWagons = new JPanel();
 					GridBagLayout jPanel3Layout = new GridBagLayout();
@@ -194,13 +210,94 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			
 		}
 		
-	
-		
-		
-		
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+		public void actionPerformed(ActionEvent event) {
 			
+			
+			//Knop om een nieuwe trein aan te maken, locomotive in ons geval.
+			if (event.getSource()== btnNewTrain){
+				
+				String waardeNieuweTrein = tfNewTrain.getText();
+				if (waardeNieuweTrein != null && waardeNieuweTrein.trim().length()>0){
+					Locomotive locomotief = new Locomotive(waardeNieuweTrein);
+					trainArray.add(locomotief);
+					completeTrain = new CompleteTrain(locomotief);
+					
+					shapeDraw.drawShapeObject(trainShape, waardeNieuweTrein, drawPanel);
+									
+				//S	currentTrain = cbAllTrains.getSelectedIndex();
+				}
+			}
+			/*
+			 * else if (event.getSource() == btnChooseTrain)
+			{
+				if (cbAllTrains.getItemCount() > 0)
+				{
+					String selection = (String)cbAllTrains.getSelectedItem();
+					tfCurrentTrain.setText("selected: " + selection);
+					int ti = cbAllTrains.getSelectedIndex();
+					if (ti != currentTrain)
+					{
+						numberOfWagons.put(currentTrain, currentNumberOfWagons);
+					}
+					currentTrain = ti;
+					try
+					{
+						currentNumberOfWagons = (Integer) numberOfWagons.get(currentTrain);
+					}
+					catch (Exception e)
+					{
+						currentNumberOfWagons = 0;
+					}			
+				}
+			}
+			else if (event.getSource() == btnDeleteTrain)
+			{
+				if (cbAllTrains.getItemCount() > 0)
+				{
+					String t = (String)cbAllTrains.getSelectedItem();
+					cbAllTrains.removeItemAt(cbAllTrains.getSelectedIndex());
+					numberOfWagons.remove(t);
+					repaint();
+					if ((String)cbAllTrains.getSelectedItem() != null)
+					{
+						currentTrain = cbAllTrains.getSelectedIndex();
+						tfCurrentTrain.setText("selected: " + (String)cbAllTrains.getSelectedItem());
+					}
+					else
+					{
+						currentTrain = 0;
+						tfCurrentTrain.setText("selected: ");
+					}
+				}
+			}
+			else if (event.getSource() == btnAddWagon1)
+			{
+				currentNumberOfWagons++;
+				drawWagon("Wagon1");
+			}
+			else if (event.getSource() == btnAddWagon2)
+			{
+				currentNumberOfWagons++;
+				drawWagon("Wagon2");
+			}
+			else if (event.getSource() == jButton1)
+			{
+				currentNumberOfWagons++;
+				drawWagon("Wagon3");
+			}
+			else if (event.getSource() == btnDeleteWagon1)
+			{
+				repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);
+			}
+			else if (event.getSource() == btnDeleteWagon2)
+			{
+				repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
+			}
+			else if (event.getSource() == btnDeleteWagon3)
+			{
+				repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
+			}
+			*/
 		}
 
 		

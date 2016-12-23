@@ -4,6 +4,9 @@ public class Locomotive {
 	//private int horsepower;
 	private String name;
 
+	public Locomotive(String name){
+		this.name = name;
+	}
 	/*public int getHorsepower() {
 		return horsepower;
 	}
