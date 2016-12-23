@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
@@ -13,6 +14,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -20,57 +22,40 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
-import paf.ass2.PoorRail;
-
-public class GraphicalDrawer {
+public class GraphicalDrawer extends javax.swing.JFrame implements ActionListener {
 	
-	public void tekenObject(){};
-
-	public class PoorRail extends javax.swing.JFrame implements ActionListener 
-	{
-		private JPanel jPanel1;
+		private JPanel drawPanel, jPanel1, jPanel2, pnlWagons;
 		private JTextPane tpTextTrain;
-		private JButton btnDeleteWagon3;
-		private JButton btnDeleteWagon2;
-		private JButton btnDeleteWagon1;
-		private JButton jButton1;
-		private JPanel pnlWagons;
-		private JButton btnAddWagon2;
-		private JButton btnAddWagon1;
-		private JTextField tfCurrentTrain;
-		private JButton btnDeleteTrain;
-		private JButton btnChooseTrain;
-		private JComboBox cbAllTrains;
-		private JButton btnNewTrain;
-		private JTextField tfNewTrain;
-		private JPanel jPanel2;
-		private JPanel drawPanel;
 		
+		//buttons die je kan aanroepen deleten en toevoegen en selecteren.
+		private JButton btnDeleteWagon1, btnDeleteWagon2 , btnDeleteWagon3, btnDeleteTrain;
+		private JButton btnAddWagon1, btnAddWagon2, btnAddWagon3, btnNewTrain;
+		private JButton btnChooseTrain;
+		
+		//Textfields voor het aanmaken van een nieuwe trein.
+		private JTextField tfNewTrain;
+		
+		//Labels voor het tonen van output.
+		private JLabel lbCurrentTrain;
+		
+		// ComboBox om de treinen in te vullen.
+		private JComboBox cbAllTrains;
+		
+		//globale variable nodig voor het tekenen.
 		private HashMap numberOfWagons;
 		private int currentNumberOfWagons;
 		private int currentTrain = -1;
 		private int OFFSET = 100;
 		private int TRAINLENGTH = 100;
-
-		/**
-		* Auto-generated main method to display this JFrame
-		*/
-		public static void main(String[] args) 
-		{
-			
-		}
 		
-		public PoorRail() 
-		{
-			super();
-			initGUI();
-		}
 		
-		private void initGUI() 
-		{
+		private void initGUI() {
 			try 
 			{
-				this.setTitle("PoorRail");
+				this.setTitle("Rich Rails");
+				
+				// standaard waarden voor je grid pane waarop je de panels gaat tekenen.
+				
 				GridBagLayout thisLayout = new GridBagLayout();
 				setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				thisLayout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
@@ -78,6 +63,8 @@ public class GraphicalDrawer {
 				thisLayout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
 				thisLayout.columnWidths = new int[] {7, 7, 7, 7};
 				getContentPane().setLayout(thisLayout);
+				
+				// voor het tekenen van het witte scherm bovenin.
 				{
 					jPanel1 = new JPanel();
 					jPanel1.setLayout(new BorderLayout());
@@ -88,6 +75,9 @@ public class GraphicalDrawer {
 						jPanel1.add(drawPanel,BorderLayout.CENTER);
 					}
 				}
+				
+				/// Voor het tekenen van het scherm links onder.
+				
 				{
 					jPanel2 = new JPanel();
 					GridBagLayout jPanel2Layout = new GridBagLayout();
@@ -151,9 +141,9 @@ public class GraphicalDrawer {
 					pnlWagons.setLayout(jPanel3Layout);
 					pnlWagons.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
-						tfCurrentTrain = new JTextField();
-						pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-						tfCurrentTrain.setText("selected: ");
+						lbCurrentTrain = new JLabel();
+						pnlWagons.add(lbCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+						lbCurrentTrain.setText("selected: ");
 					}
 					{
 						btnAddWagon1 = new JButton();
@@ -168,10 +158,10 @@ public class GraphicalDrawer {
 						btnAddWagon2.addActionListener(this);
 					}
 					{
-						jButton1 = new JButton();
-						pnlWagons.add(jButton1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-						jButton1.setText("add wagon 3");
-						jButton1.addActionListener(this);
+						btnAddWagon3 = new JButton();
+						pnlWagons.add(btnAddWagon3, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+						btnAddWagon3.setText("add wagon 3");
+						btnAddWagon3.addActionListener(this);
 					}
 					{
 						btnDeleteWagon1 = new JButton();
@@ -200,5 +190,15 @@ public class GraphicalDrawer {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+		
+		
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
 		
 }
