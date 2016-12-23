@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
@@ -48,8 +47,11 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		private int OFFSET = 100;
 		private int TRAINLENGTH = 100;
 		
+		public GraphicalDrawer(){
+			initGUI();
+		}
 		
-		private void initGUI() {
+		public void initGUI() {
 			try 
 			{
 				this.setTitle("Rich Rails");
@@ -189,9 +191,10 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			{
 				e.printStackTrace();
 			}
+			
 		}
 		
-		
+	
 		
 		
 		
