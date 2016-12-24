@@ -27,7 +27,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 	private JPanel logging, tekenObjecten, commandLines, drawPanel ; 
 	
 	//Jtextfields
-	private JTextField TextCommandLine;
+	private JTextField TextCommandLine , inputLines, outputLines;
 	
 	//JButtons
 	private JButton ButtonExectureCommand, backToMenuGUI;
@@ -73,27 +73,28 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 				getContentPane().add(commandLines, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 				{
 					instructieLabel = new JLabel();
-					commandLines.add(instructieLabel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					commandLines.add(instructieLabel, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					commandLines.setBounds(10, 10, 100, 15);
 					commandLinesLayout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-					commandLinesLayout.rowHeights = new int[] {7, 7, 7, 7};
+					commandLinesLayout.rowHeights = new int[] {12, 12, 12, 12};
 					commandLinesLayout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-					commandLinesLayout.columnWidths = new int[] {7, 7, 7, 7};
+					commandLinesLayout.columnWidths = new int[] {9, 9, 9, 9};
 					instructieLabel.setText("train name:");
 				}
+			
 				{
 					TextCommandLine = new JTextField(20);
-					commandLines.add(TextCommandLine, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					commandLines.add(TextCommandLine, new GridBagConstraints(0, 4, 5, 5, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				}
 				{
 					ButtonExectureCommand = new JButton();
-					commandLines.add(ButtonExectureCommand, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					ButtonExectureCommand.setText("make new train");
+					commandLines.add(ButtonExectureCommand, new GridBagConstraints(4, 5, 5, 5, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					ButtonExectureCommand.setText("Execute Command");
 					ButtonExectureCommand.addActionListener(this);
 				}
 				{
 					backToMenuGUI = new JButton();
-					commandLines.add(backToMenuGUI, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.EAST,GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+					commandLines.add(backToMenuGUI, new GridBagConstraints(8, 15, 6, 1, 0.0, 0.0, GridBagConstraints.EAST,GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 					backToMenuGUI.setText("Terug naar menu");
 					backToMenuGUI.addActionListener(this);
 				}

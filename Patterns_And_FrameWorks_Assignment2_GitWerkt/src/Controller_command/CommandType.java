@@ -1,7 +1,7 @@
 package Controller_command;
 
-public class CommandType {
+public abstract class CommandType {
 	
-	public void create(){};
+	public abstract void create();
 
 }

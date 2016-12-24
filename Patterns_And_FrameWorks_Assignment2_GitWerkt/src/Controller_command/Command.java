@@ -1,9 +1,14 @@
 package Controller_command;
 
 public class Command {
-private String command;
+	private String command;
 
-public void input(){};
+	public void input() {
 
-public void newTrainWagon(){};
+	};
+
+	public void newTrainWagon() {
+		
+		
+	};
 }
