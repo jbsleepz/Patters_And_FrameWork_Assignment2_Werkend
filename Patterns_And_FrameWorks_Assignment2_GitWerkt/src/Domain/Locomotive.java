@@ -22,5 +22,8 @@ public class Locomotive {
 	public void setname(String name) {
 		this.name = name;
 	}
+	public String toString(){
+		return "" + name;
+	}
 
 }

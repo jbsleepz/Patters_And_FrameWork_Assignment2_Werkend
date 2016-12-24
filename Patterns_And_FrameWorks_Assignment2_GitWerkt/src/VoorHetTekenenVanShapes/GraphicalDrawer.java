@@ -42,7 +42,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		private JLabel lbCurrentTrain, tpTextTrain;
 		
 		// ComboBox om de treinen in te vullen.
-		private JComboBox cbAllTrains;
+		private JComboBox<String> cbAllTrains;
 		
 		//globale variable nodig voor het tekenen.
 		private HashMap numberOfWagons;
@@ -56,7 +56,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		TrainShape trainShape = new TrainShape();
 		WagonShape wagonShape = new WagonShape();
 		CompleteTrain completeTrain;
-		ArrayList<Locomotive> trainArray = new ArrayList<Locomotive>();
+		ArrayList<String> trainArray = new ArrayList<String>();
 		
 		
 		public GraphicalDrawer(){
@@ -119,11 +119,20 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 						btnNewTrain.addActionListener(this);
 					}
 					{
-						ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[] { });
-						cbAllTrains = new JComboBox();
-						for (Locomotive loco : trainArray){
-							cbAllTrains.addItem(loco.getname());
-						}
+					
+						
+						ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[trainArray.size()]);
+						String[] array = trainArray.toArray(new String[trainArray.size()]);
+						JComboBox comboBox = new JComboBox(array);
+						cbAllTrains = new JComboBox(cbAllTrainsModel);
+						
+					
+						
+				/*		String[] array = new String[trainArray.size()];
+						for(int i = 0; i < array.length; i++) {
+						    array[i] = trainArray.get(i);
+						}*/
+						
 					/*	GridLayout cbAllTrainsLayout = new GridLayout(1, 1);
 						cbAllTrainsLayout.setColumns(1);
 						cbAllTrainsLayout.setHgap(5);
@@ -219,10 +228,14 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				String waardeNieuweTrein = tfNewTrain.getText();
 				if (waardeNieuweTrein != null && waardeNieuweTrein.trim().length()>0){
 					Locomotive locomotief = new Locomotive(waardeNieuweTrein);
-					trainArray.add(locomotief);
+					locomotief.setname(waardeNieuweTrein);
+					trainArray.add(locomotief.getname());
 					completeTrain = new CompleteTrain(locomotief);
 					
+					addTrain(waardeNieuweTrein);
+					cbAllTrains.getSelectedIndex();
 					shapeDraw.drawShapeObject(trainShape, waardeNieuweTrein, drawPanel);
+					System.out.print(trainArray.toString());
 									
 				//S	currentTrain = cbAllTrains.getSelectedIndex();
 				}
@@ -298,6 +311,38 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
 			}
 			*/
+		}
+		public String addTrain(String train)
+		{
+			String t = "";
+			try
+			{
+				t = train.trim();
+				for (int i = 0; i < cbAllTrains.getItemCount();i++ )
+				{
+					String cbTrain = (String)cbAllTrains.getItemAt(i);
+					if (cbTrain.equalsIgnoreCase(t))
+					{
+						t = "";
+						break;
+					}
+				}
+				if (t != "")
+				{
+					if (currentTrain >= 0)
+					{
+						numberOfWagons.put(currentTrain,currentNumberOfWagons);
+					}
+					cbAllTrains.addItem(t);
+					cbAllTrains.setSelectedItem(t);
+					numberOfWagons.put(t, 0);
+				}
+			}
+			catch (Exception e)
+			{
+			}
+			return t;
+				
 		}
 
 		

@@ -9,7 +9,8 @@ public class WagonShape extends Shape{
 	}
 
 	public void drawShape(String wagonName, JPanel drawPannel){
-		System.out.print("\n Er wordt een wagon getekend.");
+		
+		System.out.println("\n Er wordt een wagon getekend");
 		
 		/*	Graphics g = drawPannel.getGraphics();
 			g.setColor(Color.LIGHT_GRAY);
@@ -18,6 +19,6 @@ public class WagonShape extends Shape{
 			g.fillRoundRect(35+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
 			g.fillRoundRect(80+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
 			g.drawString(wagon,40+currentNumberOfWagons*TRAINLENGTH,105+currentTrain*OFFSET);*/
-	    }
+	}
 
 }
