@@ -237,7 +237,6 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					shapeDraw.drawShapeObject(trainShape, waardeNieuweTrein, drawPanel);
 					System.out.print(trainArray.toString());
 									
-				//S	currentTrain = cbAllTrains.getSelectedIndex();
 				}
 			}
 			/*
