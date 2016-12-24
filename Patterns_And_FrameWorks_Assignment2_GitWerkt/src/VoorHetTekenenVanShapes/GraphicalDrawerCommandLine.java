@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
@@ -29,7 +30,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 	private JTextField TextCommandLine;
 	
 	//JButtons
-	private JButton ButtonExectureCommand;
+	private JButton ButtonExectureCommand, backToMenuGUI;
 	
 	//JLabels
 	private JLabel instructieLabel;
@@ -59,6 +60,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 					drawPanel.setBackground(Color.WHITE);
 					tekenObjecten.add(drawPanel,BorderLayout.CENTER);
 				}
+				
 			}
 			
 			/// Voor het tekenen van het scherm links onder.
@@ -89,6 +91,13 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 					ButtonExectureCommand.setText("make new train");
 					ButtonExectureCommand.addActionListener(this);
 				}
+				{
+					backToMenuGUI = new JButton();
+					commandLines.add(backToMenuGUI, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.EAST,GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+					backToMenuGUI.setText("Terug naar menu");
+					backToMenuGUI.addActionListener(this);
+				}
+				
 			}
 			
 			//Scherm om de logging te gaan maken.
@@ -112,13 +121,23 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent event) {
 		
+		
+		if (event.getSource() == backToMenuGUI) {
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					MenuGUI menu = new MenuGUI();
+					menu.setLocationRelativeTo(null);
+					menu.setVisible(true);
+				}
+			});
+			setVisible(false);
+			dispose();
+		}
 		
 	}
 
