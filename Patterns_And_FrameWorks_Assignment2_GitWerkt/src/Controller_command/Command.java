@@ -1,55 +1,54 @@
 package Controller_command;
 
 public class Command {
-	private String command;
-
-	public void input() {
-
-	};
+	CommandType command = null;
 
 	public boolean GeldigheidCommandcontrole(String controle){
 		Boolean b = false;
 		
-				if(controle.contains("add to") ){
+				if(controle.contains("add") && controle.contains("to") ){
 					b = true;
 				} else if(controle.contains("delete")) {
 					b = true;
 				} else if(controle.contains("getnumseats")) {
 					b = true;
-				}else if(controle.contains("new train")) {
+				}else if(controle.contains("new") && controle.contains("train") ) {
 					b = true;
-				}else if(controle.contains("new wagon")){
+				}else if(controle.contains("new") && controle.contains("wagon")){
 					// type van wagon checken of het goederen is of passagiers anders moeten het aantal stoelen nog mee.
 					b = true;
-				}else if(controle.equalsIgnoreCase("REMCOMMAND")){
+				}else if(controle.contains("remove") && controle.contains("from")){
 					b = true;
 				}
 		return b;
 	}
-	public Boolean ExecuteCommand(String type){
-		boolean b = false;
-		CommandType command = null;
+	public CommandType getCommandType(String type){
+	
 		//type.equalsIgnoreCase("ADDCOMMAND") &&
 		
 		if(type.contains("add") && type.contains("to") ){
-			b = true;
 			System.out.println("Test, hij geeft true terug");
 			command = new AddCommand();	
-		} else if(type.equalsIgnoreCase("DELCOMMAND") ) {
+		} else if(type.contains("delete")) {
 			command = new DelCommand();
-		} else if(type.equalsIgnoreCase("GETCOMMAND")) {
+		} else if(type.contains("getnumseats")) {
 			command = new GetCommand();
-		}else if(type.equalsIgnoreCase("NEWTRAINCOMMAND")) {
+		}else if(type.contains("new") && type.contains("train") ) {
 			command = new NewTrainCommand();
-		}else if(type.equalsIgnoreCase("NEWWAGONCOMMAND")){
+		}else if(type.contains("new") && type.contains("wagon")){
+			// type van wagon checken of het goederen is of passagiers anders moeten het aantal stoelen nog mee.
 			command = new NewWagonCommand();
-		}else if(type.equalsIgnoreCase("REMCOMMAND")){
+		}else if(type.contains("remove") && type.contains("from")){
 			command = new RemCommand();
 		}
-		System.out.println("Test, hij geeft false terug");
-		command.execute();
-		return b;
+		return command;
 	}
+	
+	public void ExecuteCommand(CommandType type){
+		CommandType comType = type;
+		comType.execute();
+	}
+	
 	
 	/*
 	 * newcommand | addcommand | getcommand | delcommand | remcommand
