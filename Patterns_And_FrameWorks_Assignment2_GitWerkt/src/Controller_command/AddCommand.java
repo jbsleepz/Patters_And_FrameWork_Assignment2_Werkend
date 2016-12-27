@@ -1,5 +1,6 @@
 package Controller_command;
 import Domain.CompleteTrain;
+import Domain.GoodsWagon;
 import Domain.TrainStation;
 import Domain.Wagon;
 import LibariesImport.Program;
@@ -21,7 +22,7 @@ public class AddCommand extends CommandType{
 		CompleteTrain compTrain;
 		TrainStation station; 
 		//station.searchTrain();
-		Wagon wagon = new Wagon(ObjectAFromWagon);
+		Wagon wagon = new GoodsWagon(ObjectAFromWagon);
 		compTrain.addWagons(wagon);
 		
 	}
