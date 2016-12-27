@@ -2,7 +2,7 @@ package Domain;
 import java.util.ArrayList;
 
 public class TrainStation {
-	private ArrayList<CompleteTrain> completeTrains;
+	private static ArrayList<CompleteTrain> completeTrains;
 	
 	public TrainStation(){
 		completeTrains = new ArrayList<CompleteTrain>();
@@ -20,7 +20,7 @@ public class TrainStation {
 		completeTrains.remove(train);
 	}
 
-	public ArrayList<CompleteTrain> getCompleteTrains() {
+	public static ArrayList<CompleteTrain> getCompleteTrains() {
 		return completeTrains;
 	}
 

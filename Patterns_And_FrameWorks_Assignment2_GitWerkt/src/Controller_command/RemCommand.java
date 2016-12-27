@@ -13,7 +13,7 @@ public class RemCommand extends CommandType{
 		String WagonID = Program.between(input, "remove", "from");
 		String TrainID = Program.after(input, "from");
 		
-		for (ArrayList<CompleteTrain> CompleteTrain : TrainStation){
+		for (CompleteTrain CompleteTrain : TrainStation.getCompleteTrains()){
 			if (TrainID = CompleteTrain.getLocomotive()){
 				CompleteTrain.remove(WagonID);
 			}
