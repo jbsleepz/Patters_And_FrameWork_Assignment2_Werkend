@@ -17,10 +17,11 @@ public class RemCommand extends CommandType {
 		String TrainID = Program.after(input, "from");
 
 		ArrayList<CompleteTrain> train = trains.getCompleteTrains();
-		ArrayList<Wagon> wagons = trainWagon.getWagons();
+	
 
 		for (CompleteTrain completeTrain : train) {
 			if (completeTrain.getLocomotive().equals(TrainID)) {
+				ArrayList<Wagon> wagons = trainWagon.getWagons();
 				for (Wagon wagon : wagons){
 					if(wagon.getName().equals(WagonID)){
 						completeTrain.removeWagons(WagonID);
