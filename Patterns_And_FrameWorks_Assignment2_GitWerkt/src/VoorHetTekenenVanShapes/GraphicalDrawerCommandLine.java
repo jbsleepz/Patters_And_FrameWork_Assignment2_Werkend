@@ -83,7 +83,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 				}
 			
 				{
-					TextCommandLine = new JTextField(20);
+					TextCommandLine = new JTextField(30);
 					commandLines.add(TextCommandLine, new GridBagConstraints(0, 4, 5, 5, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				}
 				{
@@ -113,10 +113,12 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
 				logging.setLayout(jPanel3Layout);
 				logging.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-
+				
+				outputLines.add(logging, new GridBagConstraints(8, 15, 6, 1, 0.0, 0.0, GridBagConstraints.EAST,GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				
 			}
 			pack();
-			setSize(800, 600);
+			setSize(1200, 900);
 		} catch (Exception e) 
 		{
 			e.printStackTrace();

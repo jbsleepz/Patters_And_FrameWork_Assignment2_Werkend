@@ -232,7 +232,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				backToMenuGUI.addActionListener(this);
 			}
 			pack();
-			setSize(800, 600);
+			setSize(1400, 1200);
 			numberOfWagons = new HashMap();
 		} catch (Exception e) {
 			e.printStackTrace();
