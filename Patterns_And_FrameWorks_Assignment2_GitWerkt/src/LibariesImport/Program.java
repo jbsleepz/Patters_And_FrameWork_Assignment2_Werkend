@@ -2,7 +2,7 @@ package LibariesImport;
 
 public class Program {
 
-	    static String between(String value, String a, String b) {
+	    public static String between(String value, String a, String b) {
 		// Return a substring between the two strings.
 		int posA = value.indexOf(a);
 		if (posA == -1) {
@@ -19,7 +19,7 @@ public class Program {
 		return value.substring(adjustedPosA, posB);
 	    }
 
-	    static String before(String value, String a) {
+	    public static String before(String value, String a) {
 		// Return substring containing all characters before a string.
 		int posA = value.indexOf(a);
 		if (posA == -1) {
@@ -28,7 +28,7 @@ public class Program {
 		return value.substring(0, posA);
 	    }
 
-	    static String after(String value, String a) {
+	    public static String after(String value, String a) {
 		// Returns a substring containing all characters after a string.
 		int posA = value.lastIndexOf(a);
 		if (posA == -1) {

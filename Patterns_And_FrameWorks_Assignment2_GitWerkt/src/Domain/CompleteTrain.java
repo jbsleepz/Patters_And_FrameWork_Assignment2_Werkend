@@ -22,7 +22,7 @@ public class CompleteTrain {
 		wagons.add(wagon);
 	}
 	
-	public void removeWagons(Wagon wagon) {
+	public void removeWagons(String wagon) {
 		wagons.remove(wagon);
 	}
 	
