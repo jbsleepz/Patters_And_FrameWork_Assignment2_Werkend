@@ -127,7 +127,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 
 					ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[trainArray.size()]);
 					String[] array = trainArray.toArray(new String[trainArray.size()]);
-					JComboBox comboBox = new JComboBox(array);
+//					JComboBox comboBox = new JComboBox(array);
 					cbAllTrains = new JComboBox(cbAllTrainsModel);
 
 					/*
