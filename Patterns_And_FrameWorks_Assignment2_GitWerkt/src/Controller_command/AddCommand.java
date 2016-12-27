@@ -22,7 +22,7 @@ public class AddCommand extends CommandType{
 		CompleteTrain compTrain;
 		TrainStation station; 
 		//station.searchTrain();
-		Wagon wagon = new GoodsWagon(ObjectAFromWagon);
+		Wagon wagon = new Wagon(ObjectAFromWagon);
 		compTrain.addWagons(wagon);
 		
 	}
