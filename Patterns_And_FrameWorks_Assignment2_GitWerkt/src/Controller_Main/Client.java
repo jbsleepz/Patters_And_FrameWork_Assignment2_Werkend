@@ -8,5 +8,5 @@ public class Client {
 				Controller c = new Controller();
 				c.LaunchGraphicalInterface();
 	}
-
+//hoi
 }
