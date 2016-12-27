@@ -2,8 +2,8 @@ package Controller_Main;
 
 import javax.swing.SwingUtilities;
 
-import VoorHetTekenenVanShapes.GraphicalDrawer;
-import VoorHetTekenenVanShapes.MenuGUI;
+import GUI.GraphicalDrawer;
+import GUI.MenuGUI;
 
 public class Controller {
 	

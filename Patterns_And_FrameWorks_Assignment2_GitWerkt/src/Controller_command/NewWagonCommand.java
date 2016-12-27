@@ -28,7 +28,8 @@ public class NewWagonCommand extends CommandType{
 						} 
 					else if(input.contains("numseats")){
 						String amountPassengers = Program.after(input, "numseats");
-						new PassengerWagon(wagonID, amountPassengers);
+						int aantalPassangiers = Integer.parseInt(amountPassengers.trim());	
+						Wagon w = new PassengerWagon(wagonID, aantalPassangiers);
 					}
 					else 
 						{

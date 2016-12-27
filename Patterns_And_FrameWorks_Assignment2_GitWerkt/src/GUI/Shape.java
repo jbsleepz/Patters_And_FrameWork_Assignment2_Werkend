@@ -1,4 +1,4 @@
-package VoorHetTekenenVanShapes;
+package GUI;
 
 import javax.swing.JPanel;
 
