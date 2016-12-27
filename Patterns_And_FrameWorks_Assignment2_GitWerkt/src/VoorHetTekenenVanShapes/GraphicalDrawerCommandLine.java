@@ -113,8 +113,8 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
 				logging.setLayout(jPanel3Layout);
 				logging.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+				logging.add(outputLines, new GridBagConstraints(4, 5, 5, 5, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 				
-				outputLines.add(logging, new GridBagConstraints(8, 15, 6, 1, 0.0, 0.0, GridBagConstraints.EAST,GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 				
 			}
 			pack();
