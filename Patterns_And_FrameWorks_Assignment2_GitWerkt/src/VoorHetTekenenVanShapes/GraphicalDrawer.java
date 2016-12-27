@@ -253,7 +253,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				completeTrain = new CompleteTrain(locomotief);
 
 				// ipv addTrain uit deze klasse moet hij worden toegevoegd worden aan de klasse TrainStations
-				// Daarnaast moet de arraylist van Trainstations worden ingelezen worden in de combobox. test
+				// Daarnaast moet de arraylist van Trainstations worden ingelezen worden in de combobox. test test
 				addTrain(waardeNieuweTrein);
 				cbAllTrains.getSelectedIndex();
 				shapeDraw.drawShapeObject(trainShape, waardeNieuweTrein, drawPanel);
