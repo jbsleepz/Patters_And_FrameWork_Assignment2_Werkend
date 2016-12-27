@@ -4,6 +4,14 @@ public class Wagon {
 	private int typeNumber;
 	private String name;
 	
+	public Wagon() {
+	}
+	
+	public Wagon(int typeNumber, String name){
+		this.typeNumber = typeNumber;
+		this.name = name;
+	}
+	
 	public int getTypeNumber() {
 		return typeNumber;
 	}

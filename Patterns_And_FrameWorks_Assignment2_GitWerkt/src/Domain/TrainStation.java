@@ -8,8 +8,12 @@ public class TrainStation {
 		completeTrains = new ArrayList<CompleteTrain>();
 	}
 	
-	public void addTrain(CompleteTrain trein){
-		completeTrains.add(trein);
+	public void addTrain(CompleteTrain train){
+		completeTrains.add(train);
+	}
+	
+	public void removeTrain(CompleteTrain train){
+		completeTrains.remove(train);
 	}
 
 	public ArrayList<CompleteTrain> getCompleteTrains() {

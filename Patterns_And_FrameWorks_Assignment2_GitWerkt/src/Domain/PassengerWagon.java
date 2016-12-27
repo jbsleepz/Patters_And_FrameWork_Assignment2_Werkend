@@ -5,7 +5,7 @@ public class PassengerWagon extends Wagon {
 
 	public int getAmountPassengers() {
 		return amountPassengers;
-	}
+	}  
 
 	public void setAmountPassengers(int amountPassengers) {
 		this.amountPassengers = amountPassengers;
