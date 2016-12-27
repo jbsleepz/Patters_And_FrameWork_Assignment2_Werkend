@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-import javax.swing.border.BevelBorder;s
+import javax.swing.border.BevelBorder;
 
 import Domain.CompleteTrain;
 import Domain.Locomotive;
