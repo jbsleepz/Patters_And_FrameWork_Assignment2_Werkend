@@ -7,6 +7,10 @@ public class TrainStation {
 	public TrainStation(){
 		completeTrains = new ArrayList<CompleteTrain>();
 	}
+	public TrainStation(ArrayList<CompleteTrain> train){
+		train = new ArrayList<CompleteTrain>();
+	}
+	
 	
 	public void addTrain(CompleteTrain train){
 		completeTrains.add(train);
