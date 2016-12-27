@@ -3,9 +3,12 @@ package Domain;
 import java.util.ArrayList;
 
 public class CompleteTrain {
+	private Locomotive locomotive;
 	private ArrayList<Wagon> wagons = new ArrayList<Wagon>();
 
 	public CompleteTrain(Locomotive l) {
+		locomotive = new Locomotive();
+		locomotive = l;
 	};
 
 	public CompleteTrain(Wagon Wagons) {

@@ -3,6 +3,10 @@ package Domain;
 public class Locomotive {
 	//private int horsepower;
 	private String name;
+	
+	public Locomotive(){
+		
+	}
 
 	public Locomotive(String name){
 		this.name = name;
