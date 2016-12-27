@@ -17,14 +17,21 @@ public class TrainShape extends Shape {
 		
 		Graphics g = drawPannel.getGraphics();
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(30,80+currentTrain*OFFSET,80,40);
-		g.fillRect(80,60+currentTrain*OFFSET,30,30);
-		g.drawRoundRect(85, 40+currentTrain*OFFSET, 20, 20, 20, 20);
-		g.drawRoundRect(85, currentTrain*OFFSET, 40, 40, 40, 40);
+		
+		//grote blok
+		g.fillRect(30, 200+currentTrain*OFFSET, 80, 40);
+		//kleine blok
+		g.fillRect(70,170+currentTrain*OFFSET,40,40);
+		//stoom 1
+		g.drawRoundRect(50, 180+currentTrain*OFFSET, 20, 20, 20, 20);
+		//stoom 2
+		g.drawRoundRect(85, 200+ currentTrain*OFFSET, 40, 40, 40, 40);
 		g.setColor(Color.BLACK);
-		g.fillRoundRect(35, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-		g.fillRoundRect(80, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-		g.drawString(trainName,40,105+currentTrain*OFFSET);
+		//wiel 1
+		g.fillRoundRect(35, 240+currentTrain*OFFSET, 20, 20, 20, 20);
+		//wiel 2
+		g.fillRoundRect(80, 240+currentTrain*OFFSET, 20, 20, 20, 20);
+		g.drawString(trainName,50, 220+currentTrain*OFFSET);
 	
 		currentTrain += 1;
 		
