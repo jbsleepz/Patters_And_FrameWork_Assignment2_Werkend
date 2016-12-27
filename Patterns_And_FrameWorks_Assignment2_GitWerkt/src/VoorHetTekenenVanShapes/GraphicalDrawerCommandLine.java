@@ -139,6 +139,12 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 			setVisible(false);
 			dispose();
 		}
+		if (event.getSource() == ButtonExectureCommand){
+			String inputText = TextCommandLine.getText();
+			
+			
+			outputLines.setText(inputText);
+		}
 		
 	}
 
