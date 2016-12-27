@@ -46,7 +46,7 @@ public class Command {
 
 	public void ExecuteCommand(CommandType type, String input){
 		CommandType comType = type;
-		comType.execute();
+		comType.execute(input);
 	}
 	
 	
