@@ -3,6 +3,7 @@ package Domain;
 import java.util.ArrayList;
 
 public class CompleteTrain {
+	private String id;
 	private Locomotive locomotive;
 	private ArrayList<Wagon> wagons;
 
@@ -11,16 +12,10 @@ public class CompleteTrain {
 		 locomotive = new Locomotive();
 	};
 
-	
-	//Weet deze niet zeker, moet er bij deze constuctor ipv 'Wagon Wagons' niet 'Arraylist<Wagon> Wagons' staan?
-	public CompleteTrain(Wagon Wagons) {
-		wagons.add(Wagons);
-	};
-
-	public CompleteTrain(Locomotive l, Wagon wagons) {
+	public CompleteTrain(Locomotive l, ArrayList<Wagon> wagons) {
 		locomotive = l;
 		locomotive = new Locomotive();
-		this.wagons.add(wagons);
+		wagons = new ArrayList<Wagon>();
 	};
 
 	public void addWagons(Wagon wagon) {
