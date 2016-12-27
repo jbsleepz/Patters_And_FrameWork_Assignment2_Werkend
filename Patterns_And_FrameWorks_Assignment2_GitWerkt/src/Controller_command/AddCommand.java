@@ -20,9 +20,10 @@ public class AddCommand extends CommandType{
 		String ObjectAFromWagon = program.between(input, a, b);
 		String ObjectBtoTrain = program.after(input, b);
 		
-		CompleteTrain compTrain = null;
-		TrainStation station = null; 
+		/*CompleteTrain compTrain = new CompleteTrain();*/
+		TrainStation station = new TrainStation();
 		//station.searchTrain();
+	
 		Wagon wagon = new PassengerWagon();
 		wagon.setName(ObjectAFromWagon);
 		

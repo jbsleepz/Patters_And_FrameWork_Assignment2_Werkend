@@ -6,17 +6,21 @@ import Domain.CompleteTrain;
 import LibariesImport.Program;
 import Domain.TrainStation;
 
-public class RemCommand extends CommandType{
+public class RemCommand extends CommandType {
 	// Doet Daphne
 	@Override
 	public void execute(String input) {
 		String WagonID = Program.between(input, "remove", "from");
 		String TrainID = Program.after(input, "from");
-		
-		for (CompleteTrain CompleteTrain : TrainStation.getCompleteTrains()){
-			if (TrainID = CompleteTrain.getLocomotive()){
-				CompleteTrain.remove(WagonID);
-			}
-	}
 
+		TrainStation trains;
+		ArrayList<CompleteTrain> train = trains.getCompleteTrains();
+
+		for (CompleteTrain completeTrain : train) {
+			if (completeTrain.getLocomotive().equals(TrainID)) {
+				completeTrain.removeWagons(WagonID);
+			}
+		}
+
+	}
 }
