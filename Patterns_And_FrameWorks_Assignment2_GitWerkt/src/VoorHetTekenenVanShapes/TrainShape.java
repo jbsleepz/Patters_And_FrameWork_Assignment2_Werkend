@@ -23,17 +23,24 @@ public class TrainShape extends Shape {
 		//kleine blok
 		g.fillRect(70,170+currentTrain*OFFSET,40,40);
 		//stoom 1
-		g.drawRoundRect(50, 180+currentTrain*OFFSET, 20, 20, 20, 20);
+		g.drawRoundRect(70, 150+currentTrain*OFFSET, 20, 20, 20, 20);
 		//stoom 2
-		g.drawRoundRect(85, 200+ currentTrain*OFFSET, 40, 40, 40, 40);
+		g.drawRoundRect(90, 125+ currentTrain*OFFSET, 35, 35, 35, 35);
 		g.setColor(Color.BLACK);
 		//wiel 1
 		g.fillRoundRect(35, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 		//wiel 2
 		g.fillRoundRect(80, 240+currentTrain*OFFSET, 20, 20, 20, 20);
-		g.drawString(trainName,50, 220+currentTrain*OFFSET);
+		g.drawString(trainName,40, 220+currentTrain*OFFSET);
 	
-		currentTrain += 1;
+		currentTrain += 2;
+		
+	}
+
+
+	@Override
+	public void drawShape(String name, int currentNumberOfWagons, JPanel drawPanel) {
+		// TODO Auto-generated method stub
 		
 	}
 

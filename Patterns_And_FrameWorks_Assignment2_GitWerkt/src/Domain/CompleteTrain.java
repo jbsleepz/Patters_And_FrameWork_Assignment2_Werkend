@@ -38,4 +38,9 @@ public class CompleteTrain {
 		return locomotive;
 	}
 	
+	public String toString(){
+		return "" + id;
+	}
+	
+	
 }

@@ -47,22 +47,23 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	private JComboBox<String> cbAllTrains;
 
 	// globale variable nodig voor het tekenen.
-	private HashMap numberOfWagons;
-	private int currentNumberOfWagons;
-	private int currentTrain = -1;
-	private int OFFSET = 100;
-	private int TRAINLENGTH = 100;
+	private int currentNumberOfWagons = 1;
+
 
 	// aanmaken van relaties voor objecten die aangemaakt gaan worden.
 	GraphicalShapeDrawer shapeDraw = new GraphicalShapeDrawer();
 	TrainShape trainShape = new TrainShape();
 	WagonShape wagonShape = new WagonShape();
 	CompleteTrain completeTrain;
-	TrainStation station1 = new TrainStation();
+	TrainStation station = new TrainStation();
 	ArrayList<CompleteTrain> trainArray = new ArrayList<CompleteTrain>();
+
+	
+	
+	
+
 	ArrayList<String> trainNames = new ArrayList<String>();
 	
-	ArrayList<String> trainArrayasd = new ArrayList<String>();
 
 	public GraphicalDrawer() {
 		initGUI();
@@ -228,7 +229,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			}
 			pack();
 			setSize(1400, 1200);
-			numberOfWagons = new HashMap();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -248,11 +249,11 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				
 				//voeg de complete trein toe aan de array met complete treinen
 				trainArray.add(complete);
-					fillCombobox(cbAllTrains, locomotief.getname());
-					System.out.println("gelukt");
-					//teken de trein
-					shapeDraw.drawShapeObject(trainShape, locomotief.getname(), drawPanel);
-					System.out.print(trainNames.toString());
+				
+				//vul de combobox met namen
+				fillCombobox(cbAllTrains, locomotief.getname());
+				System.out.println("trein is aanmaken is gelukt");
+
 				
 			}
 				
@@ -310,16 +311,30 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			setVisible(false);
 			dispose();
 		}
+		
+		if(event.getSource() == btnAddWagon1){
+			shapeDraw.drawShapeObjectWagon(wagonShape, "type1" , currentNumberOfWagons, drawPanel);
+			currentNumberOfWagons += 1;
+		}
+		
+		if(event.getSource() == btnChooseTrain){
+			Object o = cbAllTrains.getSelectedItem();
+			//teken de trein
+			shapeDraw.drawShapeObject(trainShape, o.toString(), drawPanel);
+			System.out.print(trainNames.toString());
+			String currentTrainName = o.toString();
+			System.out.println("\nTrain: "+currentTrainName.toString());
+		}
 	}
 	}
 	
 
 
-	private boolean trainNameExists(String t){
+	private boolean trainNameExists(String nameLocomotive){
 		boolean exists = false;
 		
 		for (CompleteTrain train : trainArray){
-			if (train.getLocomotive().getname()== t){
+			if (train.getLocomotive().getname()== nameLocomotive){
 				exists = true;
 			}
 		}
@@ -327,15 +342,16 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	
 	}
 	
-	private void fillCombobox(JComboBox box, String s) {
+	private void fillCombobox(JComboBox box, String nameLocomotive) {
 
-		if(trainNameExists(s)){
+		if(trainNameExists(nameLocomotive)==true){
 			System.out.println("Trein bestaat al");
 			}
 		else{
-			trainNames.add(s);
+			trainNames.add(nameLocomotive);
 			String[] array = trainNames.toArray(new String[trainNames.size()]);
 			box.addItem(array);
+			
 			}
 		}
 
