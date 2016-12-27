@@ -26,6 +26,10 @@ public class NewWagonCommand extends CommandType{
 						System.out.println("het meegegeven ID bestaat al");
 						break;
 						} 
+					else if(input.contains("numseats")){
+						String amountPassengers = Program.after(input, "numseats");
+						new PassengerWagon(wagonID, amountPassengers);
+					}
 					else 
 						{
 						new PassengerWagon(wagonID, 20);
@@ -33,8 +37,6 @@ public class NewWagonCommand extends CommandType{
 						}
 				}
 			}
-		
-		new Wagon(wagonID);
 	}
 
 }

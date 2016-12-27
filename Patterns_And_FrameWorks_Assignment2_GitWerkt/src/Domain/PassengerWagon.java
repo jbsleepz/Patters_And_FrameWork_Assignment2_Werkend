@@ -2,19 +2,18 @@ package Domain;
 
 public class PassengerWagon extends Wagon {
 	private int amountPassengers;
-	private String name;
 
 	public PassengerWagon(String name, int amountPassengers){
-		this.name = name;
+		super.setName(name);
 		this.amountPassengers = amountPassengers;
 	}
 	
 	public String getName(){
-		return name;
+		return super.getName();
 	}
 	
 	public void setName(String name){
-		this.name = name;
+		super.setName(name);
 	}
 	
 	public int getAmountPassengers() {
