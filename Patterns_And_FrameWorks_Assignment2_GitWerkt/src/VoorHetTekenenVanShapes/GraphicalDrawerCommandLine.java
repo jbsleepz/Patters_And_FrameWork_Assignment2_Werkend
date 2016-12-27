@@ -21,19 +21,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
+import Controller_command.Command;
+
 public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements ActionListener  {
 	
 	//Jpanels
 	private JPanel logging, tekenObjecten, commandLines, drawPanel ; 
 	
 	//Jtextfields
-	private JTextField TextCommandLine , inputLines, outputLines;
+	private JTextField TextCommandLine , inputLines;
 	
 	//JButtons
 	private JButton ButtonExectureCommand, backToMenuGUI;
 	
 	//JLabels
-	private JLabel instructieLabel;
+	private JLabel instructieLabel, outputLines;
 	
 	public GraphicalDrawerCommandLine(){
 		try 
@@ -114,6 +116,8 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 				logging.setLayout(jPanel3Layout);
 				logging.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 				
+				outputLines = new JLabel();
+				logging.add(outputLines, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				
 			}
 			pack();
@@ -127,6 +131,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 	
 	public void actionPerformed(ActionEvent event) {
 		
+		Command command = new Command();
 		
 		if (event.getSource() == backToMenuGUI) {
 
@@ -142,9 +147,15 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 		}
 		if (event.getSource() == ButtonExectureCommand){
 			String inputText = TextCommandLine.getText();
-			
-			
-			outputLines.setText(inputText);
+			//controle(inputText) bestaat de command.
+			if (command.GeldigheidCommandcontrole(inputText)== true){
+				outputLines.setText("Doet iets");
+				//command.ExecuteCommand(type);
+				command.ExecuteCommand(inputText);
+			} else {
+				outputLines.setText("De command is ongeldig");
+			}
+
 		}
 		
 	}

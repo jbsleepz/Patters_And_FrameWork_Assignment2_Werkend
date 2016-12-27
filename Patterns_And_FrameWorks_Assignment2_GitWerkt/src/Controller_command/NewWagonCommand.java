@@ -1,9 +1,9 @@
 package Controller_command;
 
-public class newTrainCommand extends CommandType{
+public class NewWagonCommand extends CommandType{
 	
 	@Override
-	public void create() {
+	public void execute() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,9 +1,9 @@
 package Controller_command;
 
-public class newWagonCommand extends CommandType{
+public class RemCommand extends CommandType{
 	
 	@Override
-	public void create() {
+	public void execute() {
 		// TODO Auto-generated method stub
 		
 	}

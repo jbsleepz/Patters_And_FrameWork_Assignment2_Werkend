@@ -1,9 +1,9 @@
 package Controller_command;
 
-public class delCommand extends CommandType{
+public class GetCommand extends CommandType{
 	
 	@Override
-	public void create() {
+	public void execute() {
 		// TODO Auto-generated method stub
 		
 	}
