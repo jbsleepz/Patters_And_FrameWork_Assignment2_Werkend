@@ -1,4 +1,4 @@
-package VoorHetTekenenVanShapes;
+package GUI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
