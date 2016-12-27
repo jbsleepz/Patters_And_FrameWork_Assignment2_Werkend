@@ -24,11 +24,12 @@ public class RemCommand extends CommandType {
 				for (Wagon wagon : wagons){
 					if(wagon.getName().equals(WagonID)){
 						completeTrain.removeWagons(WagonID);
+						break;
 					}
 				}
-				
-				
-				
+			} else {
+				System.out.println("er kan geen trein worden gevonden met meegegeven ID");
+				break;
 			}
 		}
 
