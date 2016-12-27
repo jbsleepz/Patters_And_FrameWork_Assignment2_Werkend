@@ -1,14 +1,7 @@
 package Domain;
 
 public abstract class Wagon {
-	private String name;
-	
-	public Wagon() {
-	}
-	
-	public Wagon(String name){
-		this.name = name;
-	}
+	protected String name;
 	
 	public String getName() {
 		return name;
