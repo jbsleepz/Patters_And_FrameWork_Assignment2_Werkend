@@ -151,7 +151,7 @@ public class GraphicalDrawerCommandLine extends javax.swing.JFrame implements Ac
 			if (command.GeldigheidCommandcontrole(inputText)== true){
 				outputLines.setText("Doet iets");
 				//command.ExecuteCommand(type);
-				command.ExecuteCommand(inputText);
+				command.ExecuteCommand(command.getCommandType(inputText), inputText);
 			} else {
 				outputLines.setText("De command is ongeldig");
 			}
