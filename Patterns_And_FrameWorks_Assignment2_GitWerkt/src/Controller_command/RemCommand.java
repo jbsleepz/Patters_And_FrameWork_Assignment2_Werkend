@@ -1,7 +1,10 @@
 package Controller_command;
 
+import java.util.ArrayList;
+
 import Domain.CompleteTrain;
 import LibariesImport.Program;
+import Domain.TrainStation;
 
 public class RemCommand extends CommandType{
 	// Doet Daphne
@@ -10,13 +13,10 @@ public class RemCommand extends CommandType{
 		String WagonID = Program.between(input, "remove", "from");
 		String TrainID = Program.after(input, "from");
 		
-/*		CompleteTrain TrainID
-		for (ArrayBLabLBa bla : Trainstation){
-			if (TrainID = bla.getName){
-				bla.remove()
+		for (ArrayList<CompleteTrain> CompleteTrain : TrainStation){
+			if (TrainID = CompleteTrain.getLocomotive()){
+				CompleteTrain.remove(WagonID);
 			}
-		}*/
-
 	}
 
 }
