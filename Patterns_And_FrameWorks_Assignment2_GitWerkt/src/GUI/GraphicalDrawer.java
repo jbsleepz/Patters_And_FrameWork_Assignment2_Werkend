@@ -251,13 +251,18 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					CompleteTrain complete = new CompleteTrain(locomotief);
 					
 					//voeg de complete trein toe aan de array met complete treinen
-					trainArray.add(complete);
-					
-					//vul de combobox met namen
-					fillCombobox(cbAllTrains, locomotief.getName());
-					System.out.println("trein is aanmaken is gelukt" + locomotief.getName());
-					
-					draw();
+					if(trainNameExists(locomotief.getName()) == false){
+						trainArray.add(complete);
+						
+						//vul de combobox met namen
+						fillCombobox(cbAllTrains, locomotief.getName());
+						System.out.println("trein is aanmaken is gelukt" + locomotief.getName());
+						
+						draw();
+					}
+					else{
+						System.out.println("treinbestaat al");
+					}
 				}				
 			}
 
