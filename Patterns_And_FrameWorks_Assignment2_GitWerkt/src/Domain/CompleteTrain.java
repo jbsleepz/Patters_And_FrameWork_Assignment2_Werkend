@@ -55,10 +55,6 @@ public class CompleteTrain {
 			}
 		return count;
 	}
-	
-	public String toString(){
-		return "" + id;
-	}
 
 	public void deleteWagon(String name) {
 		int index = wagons.size()-1;
@@ -73,6 +69,21 @@ public class CompleteTrain {
 				index -=1;
 			}
 		}
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setLocomotive(Locomotive locomotive) {
+		this.locomotive = locomotive;
+	}
+	public String toString(){
+		return "" + id;
 	}
 }
 	
