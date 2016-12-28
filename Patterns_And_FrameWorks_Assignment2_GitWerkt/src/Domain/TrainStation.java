@@ -37,13 +37,11 @@ public class TrainStation {
 	public CompleteTrain zoekTrain(String naam){
 		CompleteTrain heleTrein = null;
 		for(CompleteTrain zoekTrain : completeTrains) {
-			if(zoekTrain.equals(naam)){
-				hele
+			if(zoekTrain.getLocomotive().getName().equals(naam)){
+				heleTrein = zoekTrain;
 			}
-		}
-		
-		
-		return completeTrain;
+		}	
+		return heleTrein;
 	}
 	
 	public boolean TrainExists(String id){
