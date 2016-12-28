@@ -1,6 +1,8 @@
 package Domain;
 import java.util.ArrayList;
 
+import LibariesImport.Program;
+
 public class TrainStation {
 	private ArrayList<CompleteTrain> completeTrains;
 	
@@ -26,6 +28,19 @@ public class TrainStation {
 
 	public void setCompleteTrains(ArrayList<CompleteTrain> completeTrains) {
 		this.completeTrains = completeTrains;
+	}
+	
+	public boolean TrainExists(String id){
+		boolean b = false;
+		ArrayList<CompleteTrain> train = getCompleteTrains();
+		
+		for(CompleteTrain zoekTrain : train){
+			if(zoekTrain.getLocomotive().getName().equals(id)){
+				b = true;
+				break;
+			}
+		}
+		return b;
 	}
 	
 

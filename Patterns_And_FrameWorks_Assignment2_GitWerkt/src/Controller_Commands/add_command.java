@@ -18,6 +18,9 @@ public class add_command extends Command {
 		if (characters[3].equals("to") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[1])
 				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])
 				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[4])) {
+			
+			//moet gaan zoeken naar een treintje en niet een nieuwe aanmaken.
+			
 			Locomotive treintje = new Locomotive();
 			treintje.setname(characters[4]);
 			CompleteTrain completetrein = new CompleteTrain(treintje);
