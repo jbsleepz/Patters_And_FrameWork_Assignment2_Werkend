@@ -24,6 +24,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
 import Domain.CompleteTrain;
+import Domain.GoodsWagon;
 import Domain.Locomotive;
 import Domain.PassengerWagon;
 import Domain.TrainStation;
@@ -36,7 +37,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 
 	// buttons die je kan aanroepen deleten en toevoegen en selecteren.
 	private JButton btnDeleteWagon1, btnDeleteWagon2, btnDeleteWagon3, btnDeleteTrain;
-	private JButton btnAddWagon1, btnDelWag1, btnAddWagon3, btnNewTrain;
+	private JButton btnAddWagon1, btnDelWag1, btnAddWagon2,btnDelWagon2, btnNewTrain;
 	private JButton btnChooseTrain;
 	private JButton backToMenuGUI;
 
@@ -207,18 +208,18 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					btnDelWag1.addActionListener(this);
 				}
 				{
-					btnAddWagon3 = new JButton();
-					pnlWagons.add(btnAddWagon3, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+					btnAddWagon2 = new JButton();
+					pnlWagons.add(btnAddWagon2, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnAddWagon3.setText("add GoederenWagon");
-					btnAddWagon3.addActionListener(this);
+					btnAddWagon2.setText("add GoederenWagon");
+					btnAddWagon2.addActionListener(this);
 				}
 				{
-					btnDeleteWagon1 = new JButton();
-					pnlWagons.add(btnDeleteWagon1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
+					btnDelWagon2 = new JButton();
+					pnlWagons.add(btnDelWagon2, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
 							GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon1.setText("del GoederenWagon");
-					btnDeleteWagon1.addActionListener(this);
+					btnDelWagon2.setText("del GoederenWagon");
+					btnDelWagon2.addActionListener(this);
 				}
 				//knop voor het terugbrengen naar het hoofdmenu
 				backToMenuGUI = new JButton();
@@ -287,15 +288,31 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		
 		//zet wagon type 1 bij de geselecteerde trein
 		if(event.getSource() == btnAddWagon1){
-			System.out.println("loool");
 			//voeg een wagon toe aan de geselecteerde trein
-			System.out.println(currentSelectedTrain.getLocomotive().getName());
 				wagonArray = currentSelectedTrain.getWagons();
 				wagonArray.add(new PassengerWagon("type1", 20));
 				currentSelectedTrain.setWagons(wagonArray);
-
+				
+				// teken de wagon type 1 bij de trein erbij
 				draw();
-			}				
+			}
+		
+		if(event.getSource() == btnAddWagon2){
+			wagonArray = currentSelectedTrain.getWagons();
+			wagonArray.add(new GoodsWagon("type2", 1000));
+			currentSelectedTrain.setWagons(wagonArray);
+			
+			//teken de wagon type 2 bij de trein erbij
+			draw();
+		}
+		
+		if(event.getSource() == btnDelWag1){
+			
+		}
+		
+		if(event.getSource() == btnDelWagon2){
+			
+		}
 		
 		// selecteerd de trein die je hebt geselecteerd uit de combobox
 		if(event.getSource() == btnChooseTrain){
