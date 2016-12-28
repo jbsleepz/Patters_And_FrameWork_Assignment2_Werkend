@@ -13,10 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GraphicalDrawerCommandLine  {
+public class GraphicalDrawerCommandLine {
 
 	// Jpanels
 	private JPanel drawPanel, logging, commandLines;
+
+	// TextAreas
+	private TextArea commandView, loggingView;
 
 	// Jtextfields
 	private JTextField TextCommandLine, inputLines;
@@ -24,32 +27,26 @@ public class GraphicalDrawerCommandLine  {
 	// JButtons
 	private JButton ButtonExectureCommand;
 
-	// JLabels
-	private JLabel outputLines;
-
-	// TextAreas
-	private TextArea commandView, loggingView;
-
-	public GraphicalDrawerCommandLine(Container container, JButton ButtonExectureCommand, JTextField inputLines, JPanel newDrawpanel) {
-		try{
-			container.setSize(new Dimension(1000,800));
+	public GraphicalDrawerCommandLine(Container container, JButton ButtonExectureCommand, JTextField inputLines,
+			JPanel newDrawpanel) {
+		try {
+			container.setSize(new Dimension(1000, 800));
 			container.setLayout(new GridBagLayout());
 			GridBagConstraints gridcontainer = new GridBagConstraints();
-			
+
 			drawPanel = newDrawpanel;
 			drawPanel.setBackground(Color.white);
-			drawPanel.setPreferredSize(new Dimension(1000,300));
+			drawPanel.setPreferredSize(new Dimension(1000, 300));
 			gridcontainer.fill = GridBagConstraints.HORIZONTAL;
 			gridcontainer.gridwidth = GridBagConstraints.REMAINDER;
 			gridcontainer.gridx = 0;
 			gridcontainer.gridy = 0;
-			container.add(drawPanel,gridcontainer);
-			
+			container.add(drawPanel, gridcontainer);
+
 			commandView = new TextArea();
-			commandView.setSize(new Dimension(400,400));
+			commandView.setSize(new Dimension(400, 400));
 			commandView.setEditable(false);
-			
-			
+
 			logging = new JPanel();
 			JLabel jview = new JLabel("Output");
 			logging.add(jview);
@@ -57,33 +54,29 @@ public class GraphicalDrawerCommandLine  {
 			loggingView.setForeground(Color.WHITE);
 			loggingView.setBackground(Color.black);
 			logging.add(loggingView);
-			
-			
+
 			gridcontainer.gridwidth = 1;
 			gridcontainer.gridx = 0;
 			gridcontainer.gridy = 1;
-			container.add(commandView,gridcontainer);
+			container.add(commandView, gridcontainer);
 			gridcontainer.gridx = 1;
-			container.add(logging,gridcontainer);
-			
-			
-			
+			container.add(logging, gridcontainer);
+
 			commandLines = new JPanel(new FlowLayout(0));
 			JLabel linput = new JLabel("command");
 			this.inputLines = inputLines;
 			this.ButtonExectureCommand = ButtonExectureCommand;
-			
+
 			commandLines.add(linput);
 			commandLines.add(inputLines);
 			commandLines.add(ButtonExectureCommand);
-			
+
 			gridcontainer.weightx = 1;
 			gridcontainer.gridx = 0;
 			gridcontainer.gridy = 3;
-			container.add(commandLines,gridcontainer);
-			
-			
-		}catch (Exception e) {
+			container.add(commandLines, gridcontainer);
+
+		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 		}
@@ -100,7 +93,5 @@ public class GraphicalDrawerCommandLine  {
 	public void setData(String s) {
 		commandView.setText(s);
 	}
-
-	
 
 }

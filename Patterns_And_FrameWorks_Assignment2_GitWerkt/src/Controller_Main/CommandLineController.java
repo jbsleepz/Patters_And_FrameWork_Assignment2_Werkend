@@ -6,10 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.io.StringReader;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,11 +20,11 @@ import Domain.TrainStation;
 import GUI.CommandLineOutputStream;
 import GUI.GraphicalDrawerCommandLine;
 
-public class CommandLineController implements ActionListener, Observer{
+public class CommandLineController implements ActionListener, KeyListener, Observer{
 	private TrainStation station = null;
 	private JButton executeButton = null;
-	private JPanel drawpanel = null;
-	private JTextField input = null;
+	private JPanel drawPanel = null;
+	private JTextField TextCommandLine = null;
 	private GraphicalDrawerCommandLine graphicalDrawerCommandLine;
 	
 	public CommandLineController(TrainStation station){
@@ -39,25 +36,53 @@ public class CommandLineController implements ActionListener, Observer{
 		JFrame GUIFrame = new JFrame("Rich Rail");
 		GUIFrame.setResizable(false);
 		GUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		drawpanel = new JPanel();
-		input = new JTextField(40);
+		drawPanel = new JPanel();
+		TextCommandLine = new JTextField(40);
 		executeButton = new JButton("Execute");
 		executeButton.addActionListener(this);
 		executeButton.setMnemonic(KeyEvent.VK_X);
-		//input.addKeyListener(this);
-		graphicalDrawerCommandLine = new GraphicalDrawerCommandLine(GUIFrame,executeButton,input,drawpanel);
+		TextCommandLine.addKeyListener(this);
+		graphicalDrawerCommandLine = new GraphicalDrawerCommandLine(GUIFrame,executeButton,TextCommandLine,drawPanel);
 		GUIFrame.addWindowFocusListener(new WindowAdapter() {
 			public void windowGainedFocus(WindowEvent e){
-				input.requestFocus();
+				TextCommandLine.requestFocus();
 			}
 		});
 		GUIFrame.pack();
-		input.setRequestFocusEnabled(true);
+		TextCommandLine.setRequestFocusEnabled(true);
 		GUIFrame.setVisible(true);
 		System.setOut(new PrintStream(new CommandLineOutputStream(graphicalDrawerCommandLine)));
-		
 	}
 	
+	// Deze methode is voor de controle van de commands
+	public void doCommand(){
+		//splitten van de command aan de hand van spatie.
+		String command = graphicalDrawerCommandLine.getCommand();
+		String [] charaters = null;
+		charaters = command.split(" ");
+  
+		String className = " command." + charaters[0] + "_command";
+
+		//initialisatie van de Classe Command Object. 
+		try {
+			Class klasse = Class.forName( className );
+			Command object = (Command) klasse.newInstance();
+		    
+			object.setTrainStation(station);
+			object.setParamaters(charaters);
+			Boolean a = object.execute();
+			
+		/*	if(a == false) {
+				paint();
+			}*/
+		}	
+		catch (ClassNotFoundException e) {
+			System.out.println("command not correct" );
+		} catch( Exception e ) {
+			System.out.println("command not correct.");
+		} 
+
+	}
 	
 		
 	public void actionPerformed(ActionEvent e) {
@@ -147,34 +172,5 @@ public class CommandLineController implements ActionListener, Observer{
 	*
 	*
 	*/
-/*	//Kijkt of de command een goede waarde is.
-		@SuppressWarnings("unchecked")
-		public void doCommand(){
-			String command = graphicalDrawerCommandLine.getCommand();
-			String [] charaters = null;
-			charaters = command.split(" ");
-	  
-			String className = " command." + charaters[0] + "_command";
-
-			//Try to instantiate command, else error.
-			try {
-				Class clas = Class.forName( className );
-				Command object = (Command) clas.newInstance();
-			    
-				object.setTrainManagment(model);
-				object.setParams(tokens);
-				Boolean a = object.ExecuteCommand(type, input); .Action();
-				
-				if(a == false) {
-					paint();
-				}
-			}	
-			catch (ClassNotFoundException e) {
-				System.out.println("command not correct" );
-			} catch( Exception e ) {
-				System.out.println("command not correct.");
-			} 
-
-		}*/
 
 }
