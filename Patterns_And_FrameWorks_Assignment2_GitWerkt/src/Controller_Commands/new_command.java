@@ -9,8 +9,8 @@ import Domain.Wagon;
 
 public class new_command extends Command {
 
-	TrainStation trains = null;
-	CompleteTrain completetrain = null;
+	TrainStation trains;
+	CompleteTrain completetrain;
 	Wagon w = null; 
 
 	public new_command(){
@@ -27,7 +27,7 @@ public class new_command extends Command {
 				Locomotive locomotive = new Locomotive();
 				locomotive.setname(characters[2]);
 				completetrain = new CompleteTrain(locomotive, null);
-				completetrain.setLocomotive(locomotive);
+					.setLocomotive(locomotive);
 				trains.addTrain(completetrain);
 				super.setErrorMessage("De trein " + locomotive.toString() + " is aangemaakt \n");
 			} else {
@@ -41,6 +41,7 @@ public class new_command extends Command {
 		// OR 
 		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
 		else if (characters[0].equals("new") && characters[1].equals("wagon")) {
+			super.setErrorMessage("" + completetrain);
 			if(completetrain != null){	
 				if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
 					if (characters[3].equals("maxweight")) {

@@ -78,9 +78,9 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			object.setParamaters(characters);
 			Boolean a = object.execute();
 
-			if (a == false) {
+		/*	if (a == false) {
 				teken();
-			}
+			}*/
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("class not found");
@@ -139,7 +139,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 
 	@Override
 	public void update(Observable o, Object arg) {
-		teken();
+		this.teken();
 	}
 
 }
