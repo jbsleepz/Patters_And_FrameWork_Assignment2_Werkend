@@ -10,7 +10,7 @@ import LibariesImport.Program;
 
 public class add_command extends Command {
 
-	// example van command : new train tr1
+	// example van command : add <<wg1Naam>> <<type[goods/passenger]> to <<treinNaam>>
 
 	public boolean execute() {
 		boolean b = true;
