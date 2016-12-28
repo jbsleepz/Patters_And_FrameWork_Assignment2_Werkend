@@ -33,7 +33,7 @@ public class TrainShape extends Shape {
 		g.fillRoundRect(80, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 		g.drawString(trainName,40, 220+currentTrain*OFFSET);
 	
-		currentTrain += 2;
+		currentTrain += 1;
 		
 	}
 

@@ -18,7 +18,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
@@ -57,11 +56,6 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	CompleteTrain completeTrain;
 	TrainStation station = new TrainStation();
 	ArrayList<CompleteTrain> trainArray = new ArrayList<CompleteTrain>();
-
-	
-	
-	
-
 	ArrayList<String> trainNames = new ArrayList<String>();
 	
 
@@ -119,11 +113,13 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					tpTextTrain.setText("train name:");
 				}
 				{
+					//textfield voor de treinnamen
 					tfNewTrain = new JTextField(20);
 					jPanel2.add(tfNewTrain, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				}
 				{
+					//button die de trein aanmaakt
 					btnNewTrain = new JButton();
 					jPanel2.add(btnNewTrain, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
@@ -133,38 +129,32 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				{
 
 					// deze combobox moet gevuld worden met de waardes van het domain model : Trainstations of CompleteTrain.
-					ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[trainArray.size()]);
-					String[] array = trainNames.toArray(new String[trainNames.size()]);
+					/*ComboBoxModel cbAllTrainsModel = new DefaultComboBoxModel(new String[trainArray.size()]);
+					String[] array = trainNames.toArray(new String[trainNames.size()]);*/
+					ComboBoxModel cbAllTrainsModel = 
+							new DefaultComboBoxModel(
+									new String[] { });
 //					JComboBox comboBox = new JComboBox(array);
-					cbAllTrains = new JComboBox<String>(array);
+					cbAllTrains = new JComboBox<String>();
 					
+					//Voeg de combobox toe aan het panel linksonder
 					jPanel2.add(cbAllTrains, new GridBagConstraints(1, 1, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 					cbAllTrains.setModel(cbAllTrainsModel);
-
-					/*
-					 * String[] array = new String[trainArray.size()]; for(int i
-					 * = 0; i < array.length; i++) { array[i] =
-					 * trainArray.get(i); }
-					 */
-
-					/*
-					 * GridLayout cbAllTrainsLayout = new GridLayout(1, 1);
-					 * cbAllTrainsLayout.setColumns(1);
-					 * cbAllTrainsLayout.setHgap(5);
-					 * //cbAllTrainsLayout.setVgap(5);
-					 * cbAllTrains.setLayout(cbAllTrainsLayout);
-					 */
-
 				}
 				{
+					//button waarmee je een trein  uit de combobox selecteerd
 					btnChooseTrain = new JButton();
 					jPanel2.add(btnChooseTrain, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					btnChooseTrain.setText("select train");
 					btnChooseTrain.addActionListener(this);
+					for(String s : trainNames){
+						System.out.println(s);
+					}
 				}
 				{
+					//button voor het verwijderen van de geselecteerde trein
 					btnDeleteTrain = new JButton();
 					jPanel2.add(btnDeleteTrain, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
@@ -220,13 +210,15 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					btnDeleteWagon1.setText("del GoederenWagon");
 					btnDeleteWagon1.addActionListener(this);
 				}
-
+				//knop voor het terugbrengen naar het hoofdmenu
 				backToMenuGUI = new JButton();
 				pnlWagons.add(backToMenuGUI, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 						GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				backToMenuGUI.setText("Terug naar menu");
 				backToMenuGUI.addActionListener(this);
 			}
+			
+			//zet alle panels/labels/buttons op de layout
 			pack();
 			setSize(1400, 1200);
 
@@ -235,7 +227,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		}
 
 	}
-
+	//alle akties die er zijn als je op een knop drukt
 	public void actionPerformed(ActionEvent event) {
 
 		// Knop om een nieuwe trein aan te maken
@@ -243,17 +235,25 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 
 			String waardeNieuweTrein = tfNewTrain.getText();
 			if (waardeNieuweTrein != null && waardeNieuweTrein.trim().length() > 0) {
-				//maak locomotief + complete trein aan
-				Locomotive locomotief = new Locomotive(waardeNieuweTrein);
-				CompleteTrain complete = new CompleteTrain(locomotief);
 				
-				//voeg de complete trein toe aan de array met complete treinen
-				trainArray.add(complete);
-				
-				//vul de combobox met namen
-				fillCombobox(cbAllTrains, locomotief.getname());
-				System.out.println("trein is aanmaken is gelukt");
+				if(trainNameExists(waardeNieuweTrein)==true){
+					String s = "Deze trein komt al voor";
+					System.out.println(s);
+				}
+				else{
+					//maak locomotief + complete trein aan
+					Locomotive locomotief = new Locomotive(waardeNieuweTrein);
+					CompleteTrain complete = new CompleteTrain(locomotief);
+					
+					//voeg de complete trein toe aan de array met complete treinen
+					trainArray.add(complete);
+					
+					//vul de combobox met namen
+					fillCombobox(cbAllTrains, locomotief.getname());
+					System.out.println("trein is aanmaken is gelukt" + locomotief.getname());
 
+				}
+				
 				
 			}
 				
@@ -312,11 +312,13 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			dispose();
 		}
 		
+		//zet wagon type 1 bij de geselecteerde trein
 		if(event.getSource() == btnAddWagon1){
 			shapeDraw.drawShapeObjectWagon(wagonShape, "type1" , currentNumberOfWagons, drawPanel);
 			currentNumberOfWagons += 1;
 		}
 		
+		// selecteerd de trein die je hebt geselecteerd uit de combobox
 		if(event.getSource() == btnChooseTrain){
 			Object o = cbAllTrains.getSelectedItem();
 			//teken de trein
@@ -329,11 +331,14 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	}
 	
 
-
+	//checkt of de treinnaam al bestaat bij aangemaakte treinen
 	private boolean trainNameExists(String nameLocomotive){
 		boolean exists = false;
 		
+		System.out.println("naam locomotief:" +nameLocomotive);
 		for (CompleteTrain train : trainArray){
+			String name = train.getLocomotive().getname();
+			System.out.println("exists" + name);
 			if (train.getLocomotive().getname()== nameLocomotive){
 				exists = true;
 			}
@@ -342,20 +347,16 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	
 	}
 	
+	//vult de combobox met alle aangemaakte treinen(locomotieven)
 	private void fillCombobox(JComboBox box, String nameLocomotive) {
-
-		if(trainNameExists(nameLocomotive)==true){
-			System.out.println("Trein bestaat al");
-			}
-		else{
+		
 			trainNames.add(nameLocomotive);
-			String[] array = trainNames.toArray(new String[trainNames.size()]);
-			box.addItem(array);
+			box.addItem(nameLocomotive);
 			
 			}
 		}
 
-	}
+
 
 //	public String addTrain(String train) {
 //		String t = "";
