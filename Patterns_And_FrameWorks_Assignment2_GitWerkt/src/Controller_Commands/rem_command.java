@@ -7,12 +7,12 @@ import LibariesImport.Program;
 import Domain.TrainStation;
 import Domain.Wagon;
 
-public class rem_command extends CommandType {
+public class rem_command extends Command {
 	TrainStation trains;
 	CompleteTrain trainWagon;
 
 	@Override
-	public void execute(String input) {
+	public boolean execute() {
 		String WagonID = Program.between(input, "remove", "from");
 		String TrainID = Program.after(input, "from");
 
