@@ -18,6 +18,6 @@ public class PassengerWagon extends Wagon {
 	}
 
 	public String toString() {
-		return " " + super.getName() + " " + amountPassengers;
+		return " " + super.getName() + " met " + amountPassengers + " plaatsen.";
 	}
 }

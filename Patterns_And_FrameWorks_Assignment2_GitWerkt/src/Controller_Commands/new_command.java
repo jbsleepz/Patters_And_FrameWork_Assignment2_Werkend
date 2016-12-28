@@ -30,9 +30,10 @@ public class new_command extends Command {
 			}
 
 		}
-		// voor het aanmaken van nieuwe wagon
-		// example command: "new wagon <<WagonID>> numseats <<NUMBER>>" or "new
-		// wagon <<WagonID>> maxweight <<NUMBER>>"
+		// voor het aanmaken van nieuwe wagon, example command: 
+		// passenger wagon: "new wagon <<WagonID>> numseats <<NUMBER>>" 
+		// OR 
+		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
 		else if (characters[0].equals("new") && characters[1].equals("wagon")) {
 
 			if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
