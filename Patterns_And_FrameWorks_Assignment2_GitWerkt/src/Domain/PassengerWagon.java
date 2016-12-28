@@ -1,7 +1,7 @@
 package Domain;
 
 public class PassengerWagon extends Wagon {
-	private int amountPassengers;
+	private int amountPassengers = 20;
 
 	public PassengerWagon(String name, int amountPassengers){
 		super.setName(name);

@@ -3,9 +3,6 @@ package Domain;
 public abstract class Wagon {
 	protected String name;
 	
-	public Wagon(String name){
-		this.name = name;
-	}
 	public String getName() {
 		return name;
 	}

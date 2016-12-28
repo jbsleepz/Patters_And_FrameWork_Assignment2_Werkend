@@ -12,10 +12,10 @@ public class TrainShape extends Shape {
 	}
 	
 	
-	public void drawShape(String trainName, JPanel drawPannel){
+	public void drawShape(String trainName, int currentTrain, JPanel drawPanel){
 		System.out.print("\n Er wordt een trein getekend.");
 		
-		Graphics g = drawPannel.getGraphics();
+		Graphics g = drawPanel.getGraphics();
 		g.setColor(Color.LIGHT_GRAY);
 		
 		//grote blok
@@ -33,16 +33,10 @@ public class TrainShape extends Shape {
 		g.fillRoundRect(80, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 		g.drawString(trainName,40, 220+currentTrain*OFFSET);
 	
-		currentTrain += 1;
-		
+		System.out.println("de trein is getekend");
 	}
 
 
-	@Override
-	public void drawShape(String name, int currentNumberOfWagons, JPanel drawPanel) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

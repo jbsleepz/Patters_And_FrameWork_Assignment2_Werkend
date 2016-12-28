@@ -11,7 +11,7 @@ public class WagonShape extends Shape{
 		super();
 	}
 
-	public void drawShape(String wagonName, int currentNumberOfWagons, JPanel drawPannel){
+	public void drawShape(String wagonName,int currentTrain,  int currentNumberOfWagons, JPanel drawPannel){
 		
 		System.out.println("\n Er wordt een wagon getekend");
 		
@@ -26,6 +26,13 @@ public class WagonShape extends Shape{
 			g.drawString(wagonName,40+currentNumberOfWagons*TRAINLENGTH,220+currentTrain*OFFSET);
 
 			
+	}
+
+
+	@Override
+	public void drawShape(String trainName, int currentNumberOfWagons, JPanel drawPanel) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -20,7 +20,7 @@ public class Locomotive {
 		this.horsepower = horsepower;
 	}
 */
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 

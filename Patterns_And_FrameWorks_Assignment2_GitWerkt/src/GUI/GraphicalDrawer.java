@@ -24,8 +24,10 @@ import javax.swing.border.BevelBorder;
 
 import Domain.CompleteTrain;
 import Domain.Locomotive;
+import Domain.PassengerWagon;
 import Domain.TrainStation;
 import Domain.Wagon;
+
 
 public class GraphicalDrawer extends javax.swing.JFrame implements ActionListener {
 
@@ -48,7 +50,8 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	private String selectedTrain;
 
 	// globale variable nodig voor het tekenen.
-	private int currentNumberOfWagons = 1;
+	private int currentNumberOfWagons;
+	private int currentTrainNumber;
 
 
 	// aanmaken van relaties voor objecten die aangemaakt gaan worden.
@@ -251,57 +254,13 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					trainArray.add(complete);
 					
 					//vul de combobox met namen
-					fillCombobox(cbAllTrains, locomotief.getname());
-					//teken de trein
-					shapeDraw.drawShapeObject(trainShape, locomotief.getname(), drawPanel);
-					System.out.println("trein is aanmaken is gelukt" + locomotief.getname());
-
-				}
-				
-				
+					fillCombobox(cbAllTrains, locomotief.getName());
+					System.out.println("trein is aanmaken is gelukt" + locomotief.getName());
+					
+					draw();
+				}				
 			}
-				
-//				addTrain(waardeNieuweTrein);
 
-				// ipv addTrain uit deze klasse moet hij worden toegevoegd worden aan de klasse TrainStations
-				// Daarnaast moet de arraylist van Trainstations worden ingelezen worden in de combobox. test test
-				//cbAllTrains.getSelectedIndex();
-				
-
-
-			}
-		
-	{
-		/*
-		 * else if (event.getSource() == btnChooseTrain) { if
-		 * (cbAllTrains.getItemCount() > 0) { String selection =
-		 * (String)cbAllTrains.getSelectedItem(); tfCurrentTrain.setText(
-		 * "selected: " + selection); int ti = cbAllTrains.getSelectedIndex();
-		 * if (ti != currentTrain) { numberOfWagons.put(currentTrain,
-		 * currentNumberOfWagons); } currentTrain = ti; try {
-		 * currentNumberOfWagons = (Integer) numberOfWagons.get(currentTrain); }
-		 * catch (Exception e) { currentNumberOfWagons = 0; } } } else if
-		 * (event.getSource() == btnDeleteTrain) { if
-		 * (cbAllTrains.getItemCount() > 0) { String t =
-		 * (String)cbAllTrains.getSelectedItem();
-		 * cbAllTrains.removeItemAt(cbAllTrains.getSelectedIndex());
-		 * numberOfWagons.remove(t); repaint(); if
-		 * ((String)cbAllTrains.getSelectedItem() != null) { currentTrain =
-		 * cbAllTrains.getSelectedIndex(); tfCurrentTrain.setText("selected: " +
-		 * (String)cbAllTrains.getSelectedItem()); } else { currentTrain = 0;
-		 * tfCurrentTrain.setText("selected: "); } } } else if
-		 * (event.getSource() == btnAddWagon1) { currentNumberOfWagons++;
-		 * drawWagon("Wagon1"); } else if (event.getSource() == btnAddWagon2) {
-		 * currentNumberOfWagons++; drawWagon("Wagon2"); } else if
-		 * (event.getSource() == jButton1) { currentNumberOfWagons++;
-		 * drawWagon("Wagon3"); } else if (event.getSource() == btnDeleteWagon1)
-		 * { repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1); } else if
-		 * (event.getSource() == btnDeleteWagon2) {
-		 * repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1); } else if
-		 * (event.getSource() == btnDeleteWagon3) {
-		 * repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1); }
-		 */
-		
 		//button om terug te keren naar het hoofdmenu.
 		if(event.getSource() == backToMenuGUI) {
 
@@ -318,20 +277,16 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		
 		//zet wagon type 1 bij de geselecteerde trein
 		if(event.getSource() == btnAddWagon1){
-			
+
 			//voeg een wagon toe aan de geselecteerde trein
-			int index = 0;
 			for(CompleteTrain t : trainArray){
-				if(t.getLocomotive().getname() == selectedTrain){
-					Wagon newWagon = new Wagon("type1");
-					
-					
+				if(t.getLocomotive().getName() == selectedTrain){
+					Wagon pasWagon = new PassengerWagon("type1", 20);
+					t.addWagons(pasWagon);
+					draw();
+					}					
 				}
 			}
-
-			
-			shapeDraw.drawShapeObjectWagon(wagonShape, "type1" , currentNumberOfWagons, drawPanel);
-			currentNumberOfWagons += 1;
 		}
 		
 		// selecteerd de trein die je hebt geselecteerd uit de combobox
@@ -343,14 +298,13 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		if(event.getSource() == "btnDelWag1"){
 					deleteWagon1(selectedTrain);					
 			}
-		}
 	}
+
 
 	
 
 	private void deleteWagon1(String selectedTrain) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	//checkt of de treinnaam al bestaat bij aangemaakte treinen
@@ -359,49 +313,44 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		
 		System.out.println("naam locomotief:" +nameLocomotive);
 		for (CompleteTrain train : trainArray){
-			String name = train.getLocomotive().getname();
-			System.out.println("exists" + name);
-			if (train.getLocomotive().getname()== nameLocomotive){
+			selectedTrain = train.getLocomotive().getName();
+			System.out.println("exists" + selectedTrain);
+			if (train.getLocomotive().getName()== nameLocomotive){
 				exists = true;
 			}
 		}
-		return exists;
-	
+		return exists;	
 	}
 	
 	//vult de combobox met alle aangemaakte treinen(locomotieven)
 	private void fillCombobox(JComboBox box, String nameLocomotive) {
 		
 			trainNames.add(nameLocomotive);
-			box.addItem(nameLocomotive);
-			
+			box.addItem(nameLocomotive);			
 			}
+	
+	private void draw(){
+		
 
+		
+		for (CompleteTrain train : trainArray){
+			currentNumberOfWagons = 1;
+
+			selectedTrain = train.getLocomotive().getName(); 
+			System.out.println("komt ie hier?"+selectedTrain);
+			//teken de locomotive
+			shapeDraw.drawShapeObject(trainShape,selectedTrain, currentTrainNumber, drawPanel);
+			
+			if(!(train.getAmoundOfWagons()<=0)){
+				for(Wagon wag : train.getWagons()){
+					shapeDraw.drawShapeObjectWagon(wagonShape, wag.getName(), currentNumberOfWagons, drawPanel);
+					currentNumberOfWagons +=1;
+				}
+			}
+		}
+	}
+	
+	private void clearScreen(){
+		jPanel1.repaint();
+	}
 }
-
-//	public String addTrain(String train) {
-//		String t = "";
-//		try {
-//			t = train.trim();
-//			for (int i = 0; i < cbAllTrains.getItemCount(); i++) {
-//				String cbTrain = (String) cbAllTrains.getItemAt(i);
-//				if (cbTrain.equalsIgnoreCase(t)) {
-//					t = "";
-//					break;
-//				}
-//			}
-//			if (t != "") {
-//				if (currentTrain >= 0) {
-//					numberOfWagons.put(currentTrain, currentNumberOfWagons);
-//				}
-//				cbAllTrains.addItem(t);
-//				cbAllTrains.setSelectedItem(t);
-//				numberOfWagons.put(t, 0);
-//			}
-//		} catch (Exception e) {
-//		}
-//		return t;
-//
-//	}
-
-

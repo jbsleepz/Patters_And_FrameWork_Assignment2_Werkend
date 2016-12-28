@@ -9,8 +9,8 @@ public class CompleteTrain {
 
 	public CompleteTrain(Locomotive l) {
 	 	 locomotive = l;
-		 locomotive = new Locomotive();
-	};
+		 wagons = new ArrayList<Wagon>();
+	}
 
 	public CompleteTrain(Locomotive l, ArrayList<Wagon> wagons) {
 		locomotive = l;
@@ -36,6 +36,15 @@ public class CompleteTrain {
 
 	public Locomotive getLocomotive(){
 		return locomotive;
+	}
+	
+	public int getAmoundOfWagons(){
+		
+		int count = 0;
+			for(Wagon w : wagons){
+				count +=1;
+			}
+		return count;
 	}
 	
 	public String toString(){
