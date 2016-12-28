@@ -9,9 +9,9 @@ public class delete_command extends Command {
 	public boolean execute() {
 		boolean b = true;
 
-		if (characters[2].equals("train") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[1])) {
-			if (train.TrainExists(characters[1])) {
-				train.removeTrain(characters[1]);
+		if (characters[1].equals("train") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
+			if (train.TrainExists(characters[2])) {
+				train.removeTrain(characters[2]);
 			} else {
 				super.setErrorMessage("Trein bestaat niet");
 				b = false;
