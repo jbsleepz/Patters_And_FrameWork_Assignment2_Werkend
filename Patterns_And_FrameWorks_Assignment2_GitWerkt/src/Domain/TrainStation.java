@@ -18,8 +18,13 @@ public class TrainStation {
 		completeTrains.add(train);
 	}
 	
-	public void removeTrain(CompleteTrain train){
-		completeTrains.remove(train);
+	public void removeTrain(String verwijderWaarde){
+		for(CompleteTrain zoekTrain : completeTrains){
+			if(zoekTrain.getLocomotive().getName().equals(verwijderWaarde)){
+				completeTrains.remove(zoekTrain);
+				break;
+			}
+		}
 	}
 
 	public ArrayList<CompleteTrain> getCompleteTrains() {
@@ -32,9 +37,8 @@ public class TrainStation {
 	
 	public boolean TrainExists(String id){
 		boolean b = false;
-		ArrayList<CompleteTrain> train = getCompleteTrains();
 		
-		for(CompleteTrain zoekTrain : train){
+		for(CompleteTrain zoekTrain : completeTrains){
 			if(zoekTrain.getLocomotive().getName().equals(id)){
 				b = true;
 				break;
