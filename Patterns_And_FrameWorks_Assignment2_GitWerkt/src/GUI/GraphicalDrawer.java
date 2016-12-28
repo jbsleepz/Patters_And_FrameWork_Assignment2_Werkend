@@ -308,6 +308,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			for(CompleteTrain t : trainArray){
 				if(t.getLocomotive().getName().equals(currentSelectedTrain.getLocomotive().getName())){
 					trainArray.remove(t);
+					break;
 				}
 			}
 			draw();
