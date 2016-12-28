@@ -11,6 +11,8 @@ public class rem_command extends Command {
 	TrainStation trains;
 	CompleteTrain trainWagon;
 
+	
+	//example command: "remove <<TrainID>> from <<WagonID>>";
 	@Override
 	public boolean execute() {
 		String WagonID = Program.between(input, "remove", "from");
