@@ -13,7 +13,7 @@ import Domain.Wagon;
 public class remove_command extends Command {
 	TrainStation trains;
 	
-	//example command: "remove <<TrainID>> from <<WagonID>>";
+	//example command: "remove <<WagonID>> from <<TrainID>>";
 	@Override
 	public boolean execute() {
 		boolean b = true;
@@ -22,8 +22,9 @@ public class remove_command extends Command {
 				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[3])) {
 			
 			ArrayList<CompleteTrain> allTrains = trains.getCompleteTrains();
-			String trainID = characters[1];
-			String wagonID = characters[3];
+			String wagonID = characters[1];
+			String trainID = characters[3];
+			
 
 			for (CompleteTrain completeTrain : allTrains) {
 				Locomotive locomotive = completeTrain.getLocomotive();
@@ -35,14 +36,14 @@ public class remove_command extends Command {
 							break;
 						} 
 					}
-			
-
-		} else {
+				}
+			}
+		}else {
 			super.setErrorMessage("De command is verkeerd meegegeven, example: 'remove <<TrainID>> from <<WagonID>>' \n");
 		}
 		return b;
 		
-		}
+		
 
 	}
 }
