@@ -24,7 +24,7 @@ public class WagonShape extends Shape{
 			g.fillRoundRect(35+currentNumberOfWagons*TRAINLENGTH, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 			g.fillRoundRect(80+currentNumberOfWagons*TRAINLENGTH, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 			g.drawString(wagonName,40+currentNumberOfWagons*TRAINLENGTH,220+currentTrain*OFFSET);
-
+			System.out.println("Wagon is getekent");
 			
 	}
 

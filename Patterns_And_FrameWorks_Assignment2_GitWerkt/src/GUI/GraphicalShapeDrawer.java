@@ -7,8 +7,8 @@ public class GraphicalShapeDrawer {
 		s.drawShape(currentTrainName,currentTrainNumber, drawPanel);
 	}
 	
-	public void drawShapeObjectWagon(ShapeInterface s, String wagonName,int currentNumberOfWagons, JPanel drawPanel){
-		s.drawShape(wagonName,currentNumberOfWagons, drawPanel);
+	public void drawShapeObjectWagon(ShapeInterface s, String wagonName,int currentTrain,int currentNumberOfWagons, JPanel drawPanel){
+		s.drawShape(wagonName,currentTrain, currentNumberOfWagons,  drawPanel);
 	}
 
 }
