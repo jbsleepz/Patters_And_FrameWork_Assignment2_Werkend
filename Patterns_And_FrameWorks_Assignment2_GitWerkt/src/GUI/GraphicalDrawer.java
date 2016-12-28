@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -49,6 +52,9 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 
 	// ComboBox om de treinen in te vullen.
 	private JComboBox<String> cbAllTrains;
+	
+	//laat de trein zien die je nu hebt geselecteerd
+	JTextArea textArea;
 
 
 	// globale variable nodig voor het tekenen.
@@ -99,6 +105,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				{
 					drawPanel = new JPanel();
 					drawPanel.setBackground(Color.WHITE);
+					drawPanel.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					jPanel1.add(drawPanel, BorderLayout.CENTER);
 				}
 			}
@@ -112,6 +119,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				jPanel2.setLayout(jPanel2Layout);
 				getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				jPanel2.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 				{
 					tpTextTrain = new JLabel();
 					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
@@ -172,6 +180,15 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 					btnDeleteTrain.setText("delete train");
 					btnDeleteTrain.addActionListener(this);
 				}
+				{
+					textArea = new JTextArea("Er is nog geen trein Geselecteerd");
+					Font f = new Font("Courier", Font.BOLD,20);
+					textArea.setFont(f);
+					textArea.setEditable(false);
+					jPanel2.add(textArea, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+
+				}
 			}
 
 			// Scherm rechtsboven om de wagens te gaan tekenen.
@@ -223,7 +240,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				}
 				//knop voor het terugbrengen naar het hoofdmenu
 				backToMenuGUI = new JButton();
-				pnlWagons.add(backToMenuGUI, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				pnlWagons.add(backToMenuGUI, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 						GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				backToMenuGUI.setText("Terug naar menu");
 				backToMenuGUI.addActionListener(this);
@@ -286,6 +303,16 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			dispose();
 		}
 		
+		//dit verwijderd te gehele trein
+		if(event.getSource()== btnDeleteTrain){
+			for(CompleteTrain t : trainArray){
+				if(t.getLocomotive().getName().equals(currentSelectedTrain.getLocomotive().getName())){
+					trainArray.remove(t);
+				}
+			}
+			draw();
+		}
+		
 		//zet wagon type 1 bij de geselecteerde trein
 		if(event.getSource() == btnAddWagon1){
 			//voeg een wagon toe aan de geselecteerde trein
@@ -323,6 +350,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		if(event.getSource() == btnChooseTrain){
 			Object o = cbAllTrains.getSelectedItem();
 			selectedTrain = o.toString();
+			textArea.setText("Geselecteerd: " +selectedTrain );
 			for(CompleteTrain train : trainArray){
 				if(train.getLocomotive().getName().equals(selectedTrain)){
 					currentSelectedTrain = train;
