@@ -16,7 +16,7 @@ public class GoodsWagon extends Wagon {
 		this.maxWeight = maxWeight;
 	}
 	public String toString(){
-		return " " + super.getName() + " " + maxWeight;
+		return " " + super.getName() + " met als maximale belading: " + maxWeight + " kg.";
 	}
 	
 }
