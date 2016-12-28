@@ -56,6 +56,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 	}
 
 	// Deze methode is voor de controle van de commands
+	@SuppressWarnings({ "rawtypes", "unused" })
 	public void executeCommand() {
 		// splitten van de command aan de hand van spatie.
 		String command = graphicalDrawerCommandLine.getCommand();

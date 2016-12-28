@@ -15,6 +15,8 @@ public class GoodsWagon extends Wagon {
 	public void setMaxWeight(int maxWeight) {
 		this.maxWeight = maxWeight;
 	}
-	
+	public String toString(){
+		return " " + super.getName() + " " + maxWeight;
+	}
 	
 }

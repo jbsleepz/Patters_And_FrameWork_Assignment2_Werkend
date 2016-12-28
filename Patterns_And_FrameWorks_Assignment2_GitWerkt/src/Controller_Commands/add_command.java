@@ -15,7 +15,7 @@ public class add_command extends Command {
 	public boolean execute() {
 		boolean b = true;
 
-		if (characters[3].equals("to") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[1])
+		if (characters[0].equals("add") && characters[3].equals("to") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[1])
 				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])
 				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[4])) {
 			
