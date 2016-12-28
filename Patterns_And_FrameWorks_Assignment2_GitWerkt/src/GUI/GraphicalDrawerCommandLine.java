@@ -22,12 +22,9 @@ public class GraphicalDrawerCommandLine {
 	private TextArea commandView, loggingView;
 
 	// Jtextfields
-	private JTextField TextCommandLine, inputLines;
+	private JTextField TextCommandLine;
 
-	// JButtons
-	private JButton ButtonExectureCommand;
-
-	public GraphicalDrawerCommandLine(Container container, JButton ButtonExectureCommand, JTextField inputLines,
+	public GraphicalDrawerCommandLine(Container container, JButton ButtonExectureCommand, JTextField newInputLines,
 			JPanel newDrawpanel) {
 		try {
 			container.setSize(new Dimension(1000, 800));
@@ -64,12 +61,12 @@ public class GraphicalDrawerCommandLine {
 
 			commandLines = new JPanel(new FlowLayout(0));
 			JLabel linput = new JLabel("command");
-			this.inputLines = inputLines;
-			this.ButtonExectureCommand = ButtonExectureCommand;
+			TextCommandLine = newInputLines;
+			JButton ButtonExecute = ButtonExectureCommand;
 
 			commandLines.add(linput);
-			commandLines.add(inputLines);
-			commandLines.add(ButtonExectureCommand);
+			commandLines.add(TextCommandLine);
+			commandLines.add(ButtonExecute);
 
 			gridcontainer.weightx = 1;
 			gridcontainer.gridx = 0;

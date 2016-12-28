@@ -1,4 +1,4 @@
-package Controller_command;
+package Controller_Commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,11 +37,11 @@ public class Command {
 		Pattern pattern = Pattern.compile(waarde);
 		Matcher matcher = pattern.matcher(character);
 
-		boolean found = false;
+		boolean b = false;
 		while (matcher.find()) {
-			found = true;
+			b = true;
 		}
-		return found;
+		return b;
 	}
 
 }
