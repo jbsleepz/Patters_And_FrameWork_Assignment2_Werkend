@@ -77,6 +77,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			object.setTrainStation(station);
 			object.setParamaters(characters);
 			Boolean a = object.execute();
+			
 
 		/*	if (a == false) {
 				teken();
