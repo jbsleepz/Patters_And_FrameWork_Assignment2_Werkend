@@ -1,4 +1,4 @@
-package Controller_command;
+package Controller_Commands;
 
 import Domain.CompleteTrain;
 import Domain.GoodsWagon;
@@ -8,7 +8,7 @@ import Domain.TrainStation;
 import Domain.Wagon;
 import LibariesImport.Program;
 
-public class AddCommand extends Command {
+public class add_command extends Command {
 
 	// example van command : new train tr1
 
@@ -21,12 +21,14 @@ public class AddCommand extends Command {
 			Locomotive treintje = new Locomotive();
 			treintje.setname(characters[4]);
 			CompleteTrain completetrein = new CompleteTrain(treintje);
-			if (characters[2].equals("Goods")) {
+			if (characters[2].equals("goods")) {
 				Wagon w = new GoodsWagon(characters[1], 1000);
 				completetrein.addWagons(w);
-			} else if (characters[2].equals("Passenger")) {
+				super.setErrorMessage("er is een goederen wagon aan trein" + treintje.toString() + " toegevoegd");
+			} else if (characters[2].equals("passenger")) {
 				Wagon w = new PassengerWagon(characters[1], 20);
 				completetrein.addWagons(w);
+				super.setErrorMessage("er is een passagiers wagon aan trein" + treintje.toString() + "toegevoegd");
 			} else {
 				super.setErrorMessage("Het type is verkeerd meegegeven, example wg1 Passenger to tr1");
 				b = false;

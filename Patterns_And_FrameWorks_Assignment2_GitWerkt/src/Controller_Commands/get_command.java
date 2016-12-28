@@ -1,6 +1,6 @@
-package Controller_command;
+package Controller_Commands;
 
-public class GetCommand extends CommandType{
+public class get_command extends CommandType{
 	//doet jb
 	@Override
 	public void execute(String input) {

@@ -1,4 +1,4 @@
-package Controller_command;
+package Controller_Commands;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import Domain.TrainStation;
 import Domain.Wagon;
 import LibariesImport.Program;
 
-public class NewWagonCommand extends CommandType{
+public class newWagon_command extends CommandType{
 	
 	TrainStation trains;
 	CompleteTrain completeTrain;

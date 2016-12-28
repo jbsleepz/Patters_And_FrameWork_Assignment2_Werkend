@@ -1,4 +1,4 @@
-package Controller_command;
+package Controller_Commands;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import LibariesImport.Program;
 import Domain.TrainStation;
 import Domain.Wagon;
 
-public class RemCommand extends CommandType {
+public class rem_command extends CommandType {
 	TrainStation trains;
 	CompleteTrain trainWagon;
 
