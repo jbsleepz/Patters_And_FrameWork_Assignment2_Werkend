@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -257,7 +258,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 						//vul de combobox met namen
 						fillCombobox(cbAllTrains, locomotief.getName());
 						System.out.println("trein is aanmaken is gelukt" + locomotief.getName());
-						
+
 						draw();
 					}
 					else{
@@ -318,9 +319,8 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		
 		System.out.println("naam locomotief:" +nameLocomotive);
 		for (CompleteTrain train : trainArray){
-			selectedTrain = train.getLocomotive().getName();
-			System.out.println("exists" + selectedTrain);
-			if (train.getLocomotive().getName()== nameLocomotive){
+			if (train.getLocomotive().getName().equals(nameLocomotive)){
+				System.out.println("bestaat al");
 				exists = true;
 			}
 		}
@@ -335,9 +335,8 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			}
 	
 	private void draw(){
-		
-
-		
+		clearScreen();
+					
 		for (CompleteTrain train : trainArray){
 			currentNumberOfWagons = 1;
 
@@ -345,6 +344,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			System.out.println("komt ie hier?"+selectedTrain);
 			//teken de locomotive
 			shapeDraw.drawShapeObject(trainShape,selectedTrain, currentTrainNumber, drawPanel);
+			currentTrainNumber +=1;
 			
 			if(!(train.getAmoundOfWagons()<=0)){
 				for(Wagon wag : train.getWagons()){
@@ -353,9 +353,11 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 				}
 			}
 		}
+		currentTrainNumber = -1;
 	}
 	
 	private void clearScreen(){
-		jPanel1.repaint();
+		Graphics g = jPanel1.getGraphics();
+		g.clearRect(0, 0, 800, 800);
 	}
 }
