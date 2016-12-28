@@ -33,6 +33,8 @@ public class TrainShape extends Shape {
 		//wiel 2
 		g.fillRoundRect(80, 240+currentTrain*OFFSET, 20, 20, 20, 20);
 		g.drawString(trainName,40, 220+currentTrain*OFFSET);
+		//spoortje
+		g.fillRect(30, 275+currentTrain*OFFSET,1170, 3);
 	
 		System.out.println("de trein is getekend");
 	}
