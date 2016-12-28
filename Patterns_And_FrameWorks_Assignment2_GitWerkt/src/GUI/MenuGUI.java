@@ -17,6 +17,7 @@ public class MenuGUI extends javax.swing.JFrame implements ActionListener {
 	private JButton commandlineInterface, normalInterface;
 	private JLabel commandLine, normal;
 	private JPanel jPanel1;
+	
 
 	public MenuGUI() {
 
@@ -75,7 +76,7 @@ public class MenuGUI extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		
+	
 		
 		// gaat nar de commandLine GUI om daar snel objecten aan te kunnen maken.
 		if (event.getSource() == commandlineInterface){
