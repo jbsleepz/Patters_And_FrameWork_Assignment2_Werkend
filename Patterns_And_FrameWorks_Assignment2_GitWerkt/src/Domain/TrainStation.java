@@ -2,6 +2,8 @@ package Domain;
 import java.util.ArrayList;
 
 import LibariesImport.Program;
+import trainManagement.TrainList;
+import trainManagement.Wagon;
 
 public class TrainStation {
 	private ArrayList<CompleteTrain> completeTrains;
@@ -55,6 +57,15 @@ public class TrainStation {
 		}
 		return b;
 	}
+	// om de treinen/wagons op textvlak te tonen.
+		public String getData(){
+			String data = "wagons \n";
+			
+			for(CompleteTrain trains: completeTrains){
+				data += trains.toString();
+			}
+			return data;
+		}
 	
 
 }

@@ -6,7 +6,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.io.StringReader;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,6 +21,7 @@ import javax.swing.JTextField;
 import Controller_Commands.Command;
 import Domain.TrainStation;
 import GUI.CommandLineOutputStream;
+import GUI.GraphicalDrawer;
 import GUI.GraphicalDrawerCommandLine;
 
 public class CommandLineController implements ActionListener, KeyListener, Observer {
@@ -74,9 +78,10 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			object.setParamaters(characters);
 			Boolean a = object.execute();
 
-			/*
-			 * if(a == false) { paint(); }
-			 */
+			if (a == false) {
+				teken();
+			}
+
 		} catch (ClassNotFoundException e) {
 			System.out.println("class not found");
 		} catch (Exception e) {
@@ -89,6 +94,30 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		executeCommand();
 	}
 
+	public void teken() {
+		String waarde;
+		String[] split;
+		BufferedReader reader = new BufferedReader(
+				new StringReader(station.toString()));
+		int tr = -1;
+		
+		GraphicalDrawer drawer = new GraphicalDrawer();
+		
+		try {
+			while((waarde=reader.readLine())!=null){
+				int wg = 0;
+				tr++;
+				graphicalDrawerCommandLine.setData(station.getData());
+				split = waarde.split("-");
+				drawer.draw();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TextCommandLine.setText("");
+	}
+
 	public void keyPressed(KeyEvent event) {
 		// TODO Auto-generated method stub
 		int keyUsed = event.getKeyCode();
@@ -99,18 +128,18 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		}
 
 	}
-	public void keyReleased(KeyEvent e){
+
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
-	public void keyTyped(KeyEvent e){
+
+	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		teken();
 	}
-
 
 }

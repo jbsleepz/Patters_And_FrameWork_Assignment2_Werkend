@@ -391,7 +391,7 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			box.addItem(nameLocomotive);			
 			}
 	
-	private void draw(){
+	public void draw(){
 		clearScreen();
 					
 		for (CompleteTrain train : trainArray){
