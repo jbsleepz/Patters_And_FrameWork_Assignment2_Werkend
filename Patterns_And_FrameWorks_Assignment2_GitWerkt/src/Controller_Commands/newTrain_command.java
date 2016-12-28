@@ -10,13 +10,13 @@ import Domain.TrainStation;
 import Domain.Wagon;
 import LibariesImport.Program;
 
-public class newTrain_command extends CommandType{
+public class newTrain_command extends Command{
 	
 	TrainStation trains;
 	CompleteTrain completeTrain;
 	
 	@Override
-	public void execute(String input) {
+	public boolean execute() {
 		String trainID = Program.after(input, "train");
 		
 		ArrayList<CompleteTrain> train = trains.getCompleteTrains();
