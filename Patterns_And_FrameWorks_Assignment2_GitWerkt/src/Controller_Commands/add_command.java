@@ -24,17 +24,17 @@ public class add_command extends Command {
 			if (characters[2].equals("goods")) {
 				Wagon w = new GoodsWagon(characters[1], 1000);
 				completetrein.addWagons(w);
-				super.setErrorMessage("er is een goederen wagon aan trein" + treintje.toString() + " toegevoegd");
+				super.setErrorMessage("er is een goederen wagon aan trein" + treintje.toString() + " toegevoegd /n");
 			} else if (characters[2].equals("passenger")) {
 				Wagon w = new PassengerWagon(characters[1], 20);
 				completetrein.addWagons(w);
-				super.setErrorMessage("er is een passagiers wagon aan trein" + treintje.toString() + "toegevoegd");
+				super.setErrorMessage("er is een passagiers wagon aan trein" + treintje.toString() + " toegevoegd /n");
 			} else {
-				super.setErrorMessage("Het type is verkeerd meegegeven, example wg1 Passenger to tr1");
+				super.setErrorMessage("Het type is verkeerd meegegeven, example wg1 Passenger to tr1 /n");
 				b = false;
 			}
 		} else {
-			super.setErrorMessage("De command is verkeerd meegegeven, example wg1 Passenger to tr1");
+			super.setErrorMessage("De command is verkeerd meegegeven, example wg1 Passenger to tr1 /n");
 		}
 		return b;
 
