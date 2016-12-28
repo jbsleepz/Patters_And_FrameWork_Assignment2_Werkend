@@ -10,14 +10,18 @@ public class delete_command extends Command {
 		boolean b = true;
 
 		if (characters[1].equals("train") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
-			if (train.TrainExists(characters[2])) {
-				train.removeTrain(characters[2]);
-			} else {
-				super.setErrorMessage("Trein bestaat niet");
-				b = false;
+			if (characters[1].equals("train")) {
+				super.setErrorMessage("Train met de waarde : " + characters[2].toString() + " is verwijderd \n");
+				if (train.TrainExists(characters[2])) {
+					train.removeTrain(characters[2]);
+					super.setErrorMessage("Train met de waarde : " + characters[2].toString() + " is verwijderd \n");
+				} else {
+					super.setErrorMessage("Trein bestaat niet");
+					b = false;
+				}
 			}
 		} else {
-			super.setErrorMessage("De ingevoerde tekst is verkeerd, example : delete train <<naamTrein>>");
+			super.setErrorMessage("De ingevoerde tekst is verkeerd, example : delete train <<naamTrein>> \n");
 			b = false;
 		}
 
