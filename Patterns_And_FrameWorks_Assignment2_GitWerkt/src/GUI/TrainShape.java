@@ -16,13 +16,14 @@ public class TrainShape extends Shape {
 		System.out.print("\n Er wordt een trein getekend.");
 		
 		Graphics g = drawPanel.getGraphics();
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(Color.RED);
 		
 		//grote blok
 		g.fillRect(30, 200+currentTrain*OFFSET, 80, 40);
 		//kleine blok
 		g.fillRect(70,170+currentTrain*OFFSET,40,40);
 		//stoom 1
+		g.setColor(Color.DARK_GRAY);
 		g.drawRoundRect(70, 150+currentTrain*OFFSET, 20, 20, 20, 20);
 		//stoom 2
 		g.drawRoundRect(90, 125+ currentTrain*OFFSET, 35, 35, 35, 35);

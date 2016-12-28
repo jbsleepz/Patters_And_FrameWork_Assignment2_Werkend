@@ -17,7 +17,14 @@ public class WagonShape extends Shape{
 		
 		
 			Graphics g = drawPannel.getGraphics();
-			g.setColor(Color.LIGHT_GRAY);
+			
+			if(wagonName.equals("type1")){	
+				g.setColor(Color.ORANGE);
+			}
+			else{
+				g.setColor(Color.YELLOW);
+			}
+			
 
 			g.fillRect(30+currentNumberOfWagons*TRAINLENGTH,200+currentTrain*OFFSET,80,40);
 			g.setColor(Color.BLACK);

@@ -50,6 +50,20 @@ public class CompleteTrain {
 	public String toString(){
 		return "" + id;
 	}
-	
-	
+
+	public void deleteWagon(String name) {
+		int index = wagons.size()-1;
+
+		for(Wagon w : wagons){
+			Wagon wag = wagons.get(index);
+			if(wag.getName().equals(name)){
+				wagons.remove(index);
+				break;
+			}
+			else{
+				index -=1;
+			}
+		}
+	}
 }
+	
