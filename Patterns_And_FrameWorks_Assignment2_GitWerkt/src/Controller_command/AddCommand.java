@@ -1,34 +1,41 @@
 package Controller_command;
+
 import Domain.CompleteTrain;
 import Domain.GoodsWagon;
+import Domain.Locomotive;
 import Domain.PassengerWagon;
 import Domain.TrainStation;
 import Domain.Wagon;
 import LibariesImport.Program;
 
-public class AddCommand extends CommandType{
-	Program program;
-	//doet jb
-	//'add' ID 'to' ID;
-	//add wg1 to tr1; // response: “wagon wg1 added to train tr1”
-	
-	String a = "add";
-	String b = "to";
-	
-	@Override
-	public void execute(String input) {
-		String ObjectAFromWagon = program.between(input, a, b);
-		String ObjectBtoTrain = program.after(input, b);
-		
-		/*CompleteTrain compTrain = new CompleteTrain();*/
-		TrainStation station = new TrainStation();
-		//station.searchTrain();
-	
-		Wagon wagon = new PassengerWagon();
-		wagon.setName(ObjectAFromWagon);
-		
-		compTrain.addWagons(wagon);
-		
+public class AddCommand extends Command {
+
+	// example van command : new train tr1
+
+	public boolean execute() {
+		boolean b = true;
+
+		if (characters[3].equals("to") || super.GeldigheidCommandcontrole("[a-z0-9]*", characters[1])
+				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])
+				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[4])) {
+			Locomotive treintje = new Locomotive();
+			treintje.setname(characters[4]);
+			CompleteTrain completetrein = new CompleteTrain(treintje);
+			if (characters[2].equals("Goods")) {
+				Wagon w = new GoodsWagon(characters[1], 1000);
+				completetrein.addWagons(w);
+			} else if (characters[2].equals("Passenger")) {
+				Wagon w = new PassengerWagon(characters[1], 20);
+				completetrein.addWagons(w);
+			} else {
+				super.setErrorMessage("Het type is verkeerd meegegeven, example wg1 Passenger to tr1");
+				b = false;
+			}
+		} else {
+			super.setErrorMessage("De command is verkeerd meegegeven, example wg1 Passenger to tr1");
+		}
+		return b;
+
 	}
 
 }

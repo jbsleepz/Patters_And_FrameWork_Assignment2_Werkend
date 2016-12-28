@@ -3,6 +3,7 @@ package Controller_command;
 import java.util.ArrayList;
 
 import Domain.CompleteTrain;
+import Domain.GoodsWagon;
 import Domain.PassengerWagon;
 import Domain.TrainStation;
 import Domain.Wagon;
@@ -12,7 +13,7 @@ public class NewWagonCommand extends CommandType{
 	
 	TrainStation trains;
 	CompleteTrain completeTrain;
-	// Doet Daphne
+	
 	@Override
 	public void execute(String input) {
 		String wagonID = Program.after(input, "wagon");
@@ -26,16 +27,21 @@ public class NewWagonCommand extends CommandType{
 						System.out.println("het meegegeven ID bestaat al");
 						break;
 						} 
+					else if(input.contains("maxweight")){
+						String sMaxWeight = Program.after(input, "maxweight");
+						int iMaxWeight = Integer.parseInt(sMaxWeight.trim());	
+						new GoodsWagon(wagonID, iMaxWeight);
+					}
 					else if(input.contains("numseats")){
-						String amountPassengers = Program.after(input, "numseats");
-						int aantalPassangiers = Integer.parseInt(amountPassengers.trim());	
-						Wagon w = new PassengerWagon(wagonID, aantalPassangiers);
+						String sAmountPassengers = Program.after(input, "numseats");
+						int iAmountPassengers = Integer.parseInt(sAmountPassengers.trim());	
+						new PassengerWagon(wagonID, iAmountPassengers);
 					}
 					else 
 						{
 						new PassengerWagon(wagonID, 20);
-						break;
 						}
+					
 				}
 			}
 	}
