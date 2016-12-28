@@ -307,12 +307,17 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		}
 		
 		if(event.getSource() == btnDelWag1){
+			currentSelectedTrain.deleteWagon("type1");
 			
-		}
+			draw();
+			}
 		
 		if(event.getSource() == btnDelWagon2){
+			currentSelectedTrain.deleteWagon("type2");
 			
-		}
+			draw();
+			}
+
 		
 		// selecteerd de trein die je hebt geselecteerd uit de combobox
 		if(event.getSource() == btnChooseTrain){
@@ -384,6 +389,6 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	
 	private void clearScreen(){
 		Graphics g = jPanel1.getGraphics();
-		g.clearRect(0, 0, 800, 800);
+		g.clearRect(0, 0, 1400, 1200);
 	}
 }
