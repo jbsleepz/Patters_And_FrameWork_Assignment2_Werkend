@@ -10,7 +10,7 @@ import Domain.Wagon;
 public class remove_command extends Command {
 	TrainStation trains;
 	CompleteTrain trainWagon;
-
+	//goed bezig
 	
 	//example command: "remove <<TrainID>> from <<WagonID>>";
 	@Override
