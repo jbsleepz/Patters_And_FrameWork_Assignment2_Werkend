@@ -10,7 +10,7 @@ import Domain.Wagon;
 public class RemCommand extends CommandType {
 	TrainStation trains;
 	CompleteTrain trainWagon;
-	// Doet Daphne
+
 	@Override
 	public void execute(String input) {
 		String WagonID = Program.between(input, "remove", "from");

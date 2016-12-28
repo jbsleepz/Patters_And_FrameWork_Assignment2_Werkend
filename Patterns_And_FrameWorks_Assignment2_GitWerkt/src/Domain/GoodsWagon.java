@@ -1,18 +1,19 @@
 package Domain;
 
 public class GoodsWagon extends Wagon {
-	private int MaxWeight;
+	private int maxWeight;
 	
-	public GoodsWagon(){
-		super();
+	public GoodsWagon(String naam, int maxWeight){
+		super.setName(naam);
+		this.maxWeight = maxWeight;
 	}
 
 	public int getMaxWeight() {
-		return MaxWeight;
+		return maxWeight;
 	}
 
 	public void setMaxWeight(int maxWeight) {
-		MaxWeight = maxWeight;
+		this.maxWeight = maxWeight;
 	}
 	
 	
