@@ -40,6 +40,7 @@ public class remove_command extends Command {
 			}
 		}else {
 			super.setErrorMessage("De command is verkeerd meegegeven, example: 'remove <<TrainID>> from <<WagonID>>' \n");
+			b = false;
 		}
 		return b;
 		
