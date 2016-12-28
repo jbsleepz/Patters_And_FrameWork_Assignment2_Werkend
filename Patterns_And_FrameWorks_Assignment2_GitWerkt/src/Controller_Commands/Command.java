@@ -7,14 +7,15 @@ import Domain.TrainStation;
 
 public class Command {
 
-	TrainStation train = null;
-	String[] characters = null;
+	TrainStation train;
+	String[] characters;
 	String outputMessage = "";
 
 	public boolean execute() {
 		return false;
 	}
-
+	
+	
 	public String getMessage() {
 		return outputMessage;
 	}
@@ -42,6 +43,11 @@ public class Command {
 			b = true;
 		}
 		return b;
+	}
+
+
+	public TrainStation getTrain() {
+		return train;
 	}
 
 }
