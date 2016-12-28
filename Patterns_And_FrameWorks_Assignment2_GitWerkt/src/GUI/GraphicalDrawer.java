@@ -48,20 +48,24 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 
 	// ComboBox om de treinen in te vullen.
 	private JComboBox<String> cbAllTrains;
-	private String selectedTrain;
+
 
 	// globale variable nodig voor het tekenen.
-	private int currentNumberOfWagons;
-	private int currentTrainNumber;
+	private int currentNumberOfWagons = 1;
+	private int currentTrainNumber = -1;
 
 
 	// aanmaken van relaties voor objecten die aangemaakt gaan worden.
+	private String selectedTrain;
+	private CompleteTrain currentSelectedTrain;
+	
 	GraphicalShapeDrawer shapeDraw = new GraphicalShapeDrawer();
 	TrainShape trainShape = new TrainShape();
 	WagonShape wagonShape = new WagonShape();
 	CompleteTrain completeTrain;
 	TrainStation station = new TrainStation();
 	ArrayList<CompleteTrain> trainArray = new ArrayList<CompleteTrain>();
+	ArrayList<Wagon> wagonArray = new ArrayList<Wagon>();
 	ArrayList<String> trainNames = new ArrayList<String>();
 	
 
@@ -258,14 +262,14 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 						//vul de combobox met namen
 						fillCombobox(cbAllTrains, locomotief.getName());
 						System.out.println("trein is aanmaken is gelukt" + locomotief.getName());
+						selectedTrain = locomotief.getName();
+						currentSelectedTrain = complete;
 
 						draw();
 					}
-					else{
-						System.out.println("treinbestaat al");
-					}
 				}				
 			}
+		}
 
 		//button om terug te keren naar het hoofdmenu.
 		if(event.getSource() == backToMenuGUI) {
@@ -283,28 +287,33 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 		
 		//zet wagon type 1 bij de geselecteerde trein
 		if(event.getSource() == btnAddWagon1){
-
+			System.out.println("loool");
 			//voeg een wagon toe aan de geselecteerde trein
-			for(CompleteTrain t : trainArray){
-				if(t.getLocomotive().getName() == selectedTrain){
-					Wagon pasWagon = new PassengerWagon("type1", 20);
-					t.addWagons(pasWagon);
-					draw();
-					}					
-				}
-			}
-		}
+			System.out.println(currentSelectedTrain.getLocomotive().getName());
+				wagonArray = currentSelectedTrain.getWagons();
+				wagonArray.add(new PassengerWagon("type1", 20));
+				currentSelectedTrain.setWagons(wagonArray);
+
+				draw();
+			}				
 		
 		// selecteerd de trein die je hebt geselecteerd uit de combobox
 		if(event.getSource() == btnChooseTrain){
 			Object o = cbAllTrains.getSelectedItem();
-			String currentTrainName = o.toString();
-			System.out.println("\nTrain: "+currentTrainName.toString());
+			selectedTrain = o.toString();
+			for(CompleteTrain train : trainArray){
+				if(train.getLocomotive().getName().equals(selectedTrain)){
+					currentSelectedTrain = train;
+					System.out.println("\nselected Train: "+selectedTrain.toString());
+				}
+			}
 		}
+		
 		if(event.getSource() == "btnDelWag1"){
 					deleteWagon1(selectedTrain);					
-			}
+		}
 	}
+
 
 
 	
@@ -317,10 +326,8 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 	private boolean trainNameExists(String nameLocomotive){
 		boolean exists = false;
 		
-		System.out.println("naam locomotief:" +nameLocomotive);
 		for (CompleteTrain train : trainArray){
 			if (train.getLocomotive().getName().equals(nameLocomotive)){
-				System.out.println("bestaat al");
 				exists = true;
 			}
 		}
@@ -344,14 +351,16 @@ public class GraphicalDrawer extends javax.swing.JFrame implements ActionListene
 			System.out.println("komt ie hier?"+selectedTrain);
 			//teken de locomotive
 			shapeDraw.drawShapeObject(trainShape,selectedTrain, currentTrainNumber, drawPanel);
-			currentTrainNumber +=1;
+
 			
-			if(!(train.getAmoundOfWagons()<=0)){
-				for(Wagon wag : train.getWagons()){
-					shapeDraw.drawShapeObjectWagon(wagonShape, wag.getName(), currentNumberOfWagons, drawPanel);
+			if(train.getAmoundOfWagons()>0){
+				wagonArray = train.getWagons();
+				for(Wagon wag : wagonArray){
+					shapeDraw.drawShapeObjectWagon(wagonShape, wag.getName(),currentTrainNumber, currentNumberOfWagons, drawPanel);
 					currentNumberOfWagons +=1;
 				}
 			}
+			currentTrainNumber +=1;
 		}
 		currentTrainNumber = -1;
 	}
