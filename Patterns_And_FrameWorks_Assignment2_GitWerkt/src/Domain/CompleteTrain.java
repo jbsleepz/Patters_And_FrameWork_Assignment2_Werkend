@@ -6,6 +6,10 @@ public class CompleteTrain {
 	private String id;
 	private Locomotive locomotive;
 	private ArrayList<Wagon> wagons;
+	
+	public CompleteTrain(){
+		
+	}
 
 	public CompleteTrain(Locomotive l) {
 	 	 locomotive = l;

@@ -85,6 +85,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		} catch (ClassNotFoundException e) {
 			System.out.println("class not found");
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("ingevoerde command is niet correct.");
 		}
 

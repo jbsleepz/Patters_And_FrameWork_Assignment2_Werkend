@@ -3,10 +3,12 @@ package Controller_Commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Domain.CompleteTrain;
 import Domain.TrainStation;
 
 public class Command {
 
+	CompleteTrain treintje;
 	TrainStation train;
 	String[] characters;
 	String outputMessage = "";
