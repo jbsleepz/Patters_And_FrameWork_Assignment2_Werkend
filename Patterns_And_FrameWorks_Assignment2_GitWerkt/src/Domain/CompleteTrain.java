@@ -25,6 +25,15 @@ public class CompleteTrain {
 	public void removeWagons(String wagon) {
 		wagons.remove(wagon);
 	}
+	public Wagon zoekWagon(String naam){
+		Wagon wagon = null;
+		for(Wagon zoek: wagons){
+			if (zoek.getName().equals(naam)){
+				wagon = zoek;
+			}
+		}
+		return wagon;
+	}
 	
 	public ArrayList<Wagon> getWagons() {
 		return wagons;
