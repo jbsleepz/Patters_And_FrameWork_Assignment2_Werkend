@@ -11,8 +11,8 @@ public class CommandLineOutputStream extends OutputStream{
 		this.frameGUI = commandGUI;
 	}
 
-	public void write(int b) throws IOException{
-		frameGUI.setLog("" + (char)b);
+	public void write(int waarde) throws IOException{
+		frameGUI.setLog("" + (char)waarde);
 	}
 
 }

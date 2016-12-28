@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import Controller_Main.CommandLineController;
+import Domain.TrainStation;
+
 public class MenuGUI extends javax.swing.JFrame implements ActionListener {
 
 	private JButton commandlineInterface, normalInterface;
@@ -77,18 +80,13 @@ public class MenuGUI extends javax.swing.JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 	
-		
+		CommandLineController commandlineGUI = null;
+		TrainStation train = null;
 		// gaat nar de commandLine GUI om daar snel objecten aan te kunnen maken.
 		if (event.getSource() == commandlineInterface){
-			SwingUtilities.invokeLater(new Runnable() 
-			{
-				public void run() 
-				{
-					GraphicalDrawerCommandLine commandGUI = new GraphicalDrawerCommandLine();
-					commandGUI.setLocationRelativeTo(null);
-					commandGUI.setVisible(true);
-				}
-			});
+			
+			commandlineGUI = new CommandLineController(train);
+			commandlineGUI.show();
 			setVisible(false);
 			dispose(); 
 		}
