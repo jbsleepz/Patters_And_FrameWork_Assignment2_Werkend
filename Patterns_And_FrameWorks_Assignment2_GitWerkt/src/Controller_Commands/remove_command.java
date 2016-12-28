@@ -7,7 +7,7 @@ import LibariesImport.Program;
 import Domain.TrainStation;
 import Domain.Wagon;
 
-public class rem_command extends Command {
+public class remove_command extends Command {
 	TrainStation trains;
 	CompleteTrain trainWagon;
 

@@ -34,6 +34,13 @@ public class TrainStation {
 	public void setCompleteTrains(ArrayList<CompleteTrain> completeTrains) {
 		this.completeTrains = completeTrains;
 	}
+	public CompleteTrain zoekTrain(String naam){
+		CompleteTrain heleTrein = null;
+		for(completeTrains.iterator())
+		
+		
+		return completeTrain;
+	}
 	
 	public boolean TrainExists(String id){
 		boolean b = false;
