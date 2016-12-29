@@ -19,13 +19,12 @@ public class TrainStation extends java.util.Observable {
 		this.notifyObservers();
 	}
 	
-	public void new_command(String objectType,String naam, String stoelen)	{
+/*	public void new_command(String objectType,String naam, String stoelen)	{
 		if(objectType.equals("train")){
 			Locomotive loco = new Locomotive(naam);
 			CompleteTrain compTrain = new CompleteTrain(loco);
-			compTrain.setWagons();
 		}
-	}
+	}*/
 
 	public TrainStation(ArrayList<CompleteTrain> train) {
 		train = new ArrayList<CompleteTrain>();
