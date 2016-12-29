@@ -47,7 +47,10 @@ public class Command {
 	public void setWagonToTrainstation(){
 		train.addWagon(wagentje);
 	}
-	
+	public void setCompleteTrainToTrainStation(){
+		train.addTrain(treintje);
+	//	returnTrainstationToController();
+	}
 	
 	
 	

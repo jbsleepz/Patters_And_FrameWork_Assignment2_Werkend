@@ -79,10 +79,11 @@ public class TrainStation extends java.util.Observable {
 	}
 
 	public CompleteTrain zoekTrain(String naam) {
-		CompleteTrain heleTrein = null;
-		for (CompleteTrain zoekTrain : completeTrains) {
-			if (zoekTrain.getLocomotive().getName().equals(naam)) {
-				heleTrein = zoekTrain;
+		completeTrains = getCompleteTrains();
+		CompleteTrain heleTrein= new CompleteTrain();
+		for (CompleteTrain gevonden : completeTrains) {
+			if (gevonden.getLocomotive().getName().equals(naam)) {
+				heleTrein = gevonden;
 			}
 		}
 		return heleTrein;

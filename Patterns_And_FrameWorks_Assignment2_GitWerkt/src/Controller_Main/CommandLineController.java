@@ -134,10 +134,12 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		
 		compTrains = new ArrayList<CompleteTrain>();
 		compTrains = station.getCompleteTrains();
+		System.out.println(compTrains);
+		System.out.println(compTrains);
 		
 		for (CompleteTrain train : compTrains){
 			currentNumberOfWagons = 1;
-
+			System.out.println(train);
 			selectedTrain = train.getLocomotive().getName(); 
 			System.out.println("komt ie hier?"+selectedTrain);
 			//teken de locomotive
