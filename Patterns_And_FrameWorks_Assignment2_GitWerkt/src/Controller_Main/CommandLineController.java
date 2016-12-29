@@ -106,8 +106,8 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			
 			for(CompleteTrain t : trains){
 				System.out.println("doet ie et of doet ie et niet"+t.getLocomotive().getName());
-			
-			
+				
+				
 			teken();
 			
 			}
@@ -130,7 +130,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 
 	
 	public void teken(){
-		/*clearScreen();*/
+		clearScreen();
 		
 		compTrains = new ArrayList<CompleteTrain>();
 		compTrains = station.getCompleteTrains();
@@ -138,7 +138,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		System.out.println(compTrains);
 		
 		for (CompleteTrain train : compTrains){
-			currentNumberOfWagons = 1;
+			/*currentNumberOfWagons = 1;
 			System.out.println(train);
 			selectedTrain = train.getLocomotive().getName(); 
 			System.out.println("komt ie hier?"+selectedTrain);
@@ -156,12 +156,15 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			currentTrainNumber +=1;
 		}
 		currentTrainNumber = -1;
+	}*/
+			System.out.println("ik heb een trein");
+		}
 	}
 	
-/*	private void clearScreen(){
-		Graphics g = jPanel1.getGraphics();
+private void clearScreen(){
+		Graphics g = drawPanel.getGraphics();
 		g.clearRect(0, 0, 1400, 1200);
-	}*/
+	}
 
 
 	
