@@ -1,6 +1,7 @@
 package Controller_Main;
 
 import java.awt.Graphics;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -104,6 +105,11 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			
 			teken();
 
+			//vul de commandlinebox links
+			
+			/*fillcommandbox();*/
+			
+			
 		/*	if (a == false) {
 				teken();
 			}*/
@@ -124,6 +130,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 	
 	public void teken(){
 		clearScreen();
+		fillCommandBox();
 		
 		compTrains = station.getCompleteTrains();
 		/*CompleteTrain s = compTrains.get(0);*/
@@ -141,6 +148,9 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			if(train.getAmoundOfWagons()>0){
 				wagons = train.getWagons();
 				for(Wagon wag : wagons){
+					
+					
+					//teken wagon
 					shapedraw.drawShapeObjectWagon(wagonShape, wag.getName(),currentTrainNumber, currentNumberOfWagons, drawPanel);
 					currentNumberOfWagons +=1;
 				}
@@ -148,6 +158,43 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			currentTrainNumber +=1;
 		}
 		currentTrainNumber = -1;
+	}
+	
+	public void fillCommandBox(){
+			String completeTreinen = "Dit zijn alle complete treinen: \n";
+			String wagensTrein = "";
+			String WagonsLos = "Deze wagons zijn nog niet toegekent aan een trein: \n";
+			
+			String tussen = "";
+			String treintjes = "";
+		for (CompleteTrain c : station.getCompleteTrains()){
+			tussen = " " + c.getLocomotive().getName();
+			treintjes += " "+ tussen;
+
+			
+			if(c.getAmoundOfWagons() > 0){
+				for(Wagon w : c.getWagons()){
+					tussen = " " + w.getName();
+					wagensTrein += tussen;
+				}
+			}
+			//wagons
+
+		}
+		if(station.geefAantalWagons() > 0 ){
+			for(Wagon w: station.getWagons()){
+				tussen += " " + w.getName();
+				WagonsLos += tussen;
+			}
+		}
+		
+		
+		String eindString = completeTreinen + "\n"+ treintjes + "\n" + wagensTrein + "\n" + WagonsLos;
+		
+			//output wagons van het station
+
+		TextArea p = graphicalDrawerCommandLine.getTextArea();
+		p.setText(eindString);
 	}
 
 

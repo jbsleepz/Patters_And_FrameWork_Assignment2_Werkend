@@ -92,5 +92,9 @@ public class GraphicalDrawerCommandLine {
 	public void setData(String s) {
 		commandView.setText(s);
 	}
+	
+	public TextArea getTextArea(){
+		return commandView;
+	}
 
 }

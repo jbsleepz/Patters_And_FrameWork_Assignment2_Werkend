@@ -6,7 +6,7 @@ import Domain.CompleteTrain;
 import Domain.PassengerWagon;
 import Domain.Wagon;
 
-public class get_command extends Command {
+public class getnumseats_command extends Command {
 
 	CompleteTrain treintje;
 
