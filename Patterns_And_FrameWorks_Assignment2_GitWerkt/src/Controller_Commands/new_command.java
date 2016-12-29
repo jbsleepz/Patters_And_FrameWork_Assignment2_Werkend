@@ -41,7 +41,13 @@ public class new_command extends Command {
 				System.out.println(locomotive.getName());
 				super.treintje = blabla;
 				System.out.println(blabla.toString());
+				super.setTrainToStation();
 				System.out.println(treintje.getLocomotive().getName());
+				ArrayList<CompleteTrain> comp = new ArrayList<CompleteTrain>();
+				comp = super.train.getCompleteTrains();
+				for(CompleteTrain t : comp){
+					System.out.println("aaaaa"+t.getLocomotive().getName());
+				}
 				super.setErrorMessage("De trein " + locomotive.toString() + " is aangemaakt \n");
 			} else {
 				super.setErrorMessage("De command is verkeerd meegegeven, vb. ; 'new train tr1' \n");
@@ -54,7 +60,7 @@ public class new_command extends Command {
 		// OR 
 		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
 		else if (characters[0].equals("new") && characters[1].equals("wagon")) {
-			System.out.println(super.treintje);
+			System.out.println(super.treintje.getLocomotive().getName());
 				if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
 					System.out.println("test skeer");
 					if (characters[3].equals("maxweight")) {

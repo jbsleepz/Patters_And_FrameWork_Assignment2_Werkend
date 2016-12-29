@@ -34,6 +34,12 @@ public class Command {
 	public void setParamaters(String[] characters) {
 		this.characters = characters;
 	}
+	
+	public void setTrainToStation(){
+		train.addTrain(treintje);
+		returnTrainstationToController();
+		
+	}
 
 	public boolean GeldigheidCommandcontrole(String waarde, String character) {
 
@@ -45,6 +51,10 @@ public class Command {
 			b = true;
 		}
 		return b;
+	}
+	
+	public TrainStation returnTrainstationToController(){
+		return train;
 	}
 
 

@@ -40,10 +40,12 @@ public class GraphicalDrawerCommandLine {
 			gridcontainer.gridy = 0;
 			container.add(drawPanel, gridcontainer);
 
+			//linker scherm met wat er nu is aangemaakt	
 			commandView = new TextArea();
 			commandView.setSize(new Dimension(400, 400));
 			commandView.setEditable(false);
 
+			//zwarte scherm rechtsonder
 			logging = new JPanel();
 			JLabel jview = new JLabel("Output");
 			logging.add(jview);

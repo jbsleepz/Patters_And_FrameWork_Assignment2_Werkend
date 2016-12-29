@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -19,13 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller_Commands.Command;
+import Domain.CompleteTrain;
 import Domain.TrainStation;
 import GUI.CommandLineOutputStream;
 import GUI.GraphicalDrawer;
 import GUI.GraphicalDrawerCommandLine;
 
 public class CommandLineController implements ActionListener, KeyListener, Observer {
-	private TrainStation station = null;
+	private TrainStation station;
 	private JButton executeButton = null;
 	private JPanel drawPanel = null;
 	private JTextField TextCommandLine = null;
@@ -77,6 +79,13 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			object.setTrainStation(station);
 			object.setParamaters(characters);
 			Boolean a = object.execute();
+			station = object.returnTrainstationToController();
+			ArrayList<CompleteTrain> trains;
+			trains = station.getCompleteTrains();
+			
+			for(CompleteTrain t : trains){
+				System.out.println("doet ie et of doet ie et niet"+t.getLocomotive().getName());
+			}
 
 		/*	if (a == false) {
 				teken();

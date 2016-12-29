@@ -81,7 +81,7 @@ public class MenuGUI extends javax.swing.JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 	
 		CommandLineController commandlineGUI = null;
-		TrainStation train = null;
+		TrainStation train = new TrainStation();
 		// gaat nar de commandLine GUI om daar snel objecten aan te kunnen maken.
 		if (event.getSource() == commandlineInterface){
 			
