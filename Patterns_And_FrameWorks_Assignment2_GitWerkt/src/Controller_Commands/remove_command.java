@@ -32,8 +32,7 @@ public class remove_command extends Command {
 					ArrayList<Wagon> wagons = completeTrain.getWagons();
 					for (Wagon wagon : wagons){
 						if(wagon.getName().equals(wagonID)){
-							Wagon w = completeTrain.zoekWagon(wagonID);
-							completeTrain.removeWagons(w);
+							completeTrain.removeWagons(wagon);
 							break;
 						} 
 					}
