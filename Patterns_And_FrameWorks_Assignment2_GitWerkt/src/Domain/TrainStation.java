@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 public class TrainStation extends java.util.Observable {
 	private ArrayList<CompleteTrain> completeTrains;
-	private HashMap<String,Locomotive> locomotiveOpslag = new HashMap<String, Locomotive>();
+	/*private HashMap<String,Locomotive> locomotiveOpslag = new HashMap<String, Locomotive>();
 	private HashMap<String,CompleteTrain> completeTrainsOpslag = new HashMap<String, CompleteTrain>();
 	private HashMap<String,Wagon> wagonOpslag = new HashMap<String, Wagon>();
-	
+	*/
 	
 	public TrainStation() {
 		completeTrains = new ArrayList<CompleteTrain>();
