@@ -48,7 +48,7 @@ public class new_command extends Command {
 		// passenger wagon: "new wagon <<WagonID>> numseats <<NUMBER>>" 
 		// OR 
 		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
-		else if (characters[3].equals("maxweight")|| characters[3].equals("numseats") ||	super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
+		else if (characters[3].equals("maxweight")|| characters[3].equals("numseats") ||super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
 					System.out.println("test skeer");
 					if (characters[3].equals("maxweight")) {
 						
