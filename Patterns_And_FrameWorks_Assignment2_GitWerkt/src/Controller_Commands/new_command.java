@@ -32,6 +32,9 @@ public class new_command extends Command {
 
 			// voor het aanmaken van een nieuwe trein.
 			if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
+				
+				String selectedTrain = "12";
+				
 
 				// aanmaken locomotive, toevegen aan een complete trein
 				Locomotive locomotive = new Locomotive();
