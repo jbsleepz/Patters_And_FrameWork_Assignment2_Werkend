@@ -46,13 +46,10 @@ public class new_command extends Command {
 			// voor het aanmaken van een nieuwe locomotief.
 			if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
 				selectedTrain = characters[2];
-				System.out.println("eerste invoer "+selectedTrain);
-				System.out.println("123");
+
 				//als er al treinen zijn
 				if(train.geefAantalTreinen()> 0){
-					System.out.println("!!!!!!!!");
 					if(train.zoekTrain(characters[2])==true){
-						System.out.println("........");
 					System.out.println("trein" + characters[2]+ " bestaat al, kan niet opnieuw aanmaken");
 					}
 					

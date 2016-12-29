@@ -6,6 +6,7 @@ public class CompleteTrain {
 	private String idCompleteTrain;
 	private Locomotive locomotive;
 	private ArrayList<Wagon> wagons;
+	private Wagon selectedWagon = null;
 	
 	public CompleteTrain(){
 		
@@ -94,6 +95,16 @@ public class CompleteTrain {
 	
 	public String toString(){
 		return "" + idCompleteTrain;
+	}
+
+	public Wagon getSelectedWagon(String string) {
+		for(Wagon w: wagons){
+			if(w.getName().equals(string)){
+				selectedWagon = w;
+				break;
+			}
+		}
+		return selectedWagon;
 	}
 }
 	

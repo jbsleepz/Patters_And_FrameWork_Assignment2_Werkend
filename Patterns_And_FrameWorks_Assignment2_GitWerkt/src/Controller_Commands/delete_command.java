@@ -9,11 +9,11 @@ public class delete_command extends Command {
 	public boolean execute() {
 		boolean b = true;
 
-		if (characters[0].equals("delete") && characters[1].equals("train") && super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
+		if (characters[0].equals("delete") && characters[1].equals("train")) {
 			if (characters[1].equals("train")) {
 				if (train.TrainExists(characters[2])) {
 					train.removeTrain(characters[2]);
-					super.setErrorMessage("Train met de waarde : " + characters[2].toString() + " is verwijderd \n");
+					super.setErrorMessage("Train met de waarde : " + characters[2]+ " is verwijderd \n");
 				} else {
 					super.setErrorMessage("Trein bestaat niet");
 					b = false;

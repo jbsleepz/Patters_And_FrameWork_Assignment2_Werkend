@@ -49,18 +49,14 @@ public class add_command extends Command {
 			
 			//als de wagon bestaat in de lijst met wagons
 			
-			System.out.println("123");
+		
 			if(train.geefAantalWagons()> 0 == true && train.bestaatWagon(characters[1])){
-				System.out.println("!!!!!!!!!");
+				
 				if(train.geefAantalTreinen()>0 == true && train.zoekTrain(characters[3])){
-					System.out.println("bwibegbievibhj");
+
 					selectedCurrentTrain = train.getSelectedTrain(characters[3]);
-					System.out.println("#############");
+
 					selectedWagon = train.getSelectedWagon(characters[1]);
-					System.out.println("$$$$");
-					System.out.println("huide trein:L "+selectedCurrentTrain.getLocomotive().getName());
-					System.out.println("..........");
-					System.out.println("geselecteerde wagon: "+ selectedWagon.getName());
 					
 					//voeg wagon toe uit de lijst met wagons aan de trein
 					selectedCurrentTrain.addWagons(selectedWagon);
