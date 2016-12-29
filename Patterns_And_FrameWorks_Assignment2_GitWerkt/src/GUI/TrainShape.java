@@ -36,7 +36,7 @@ public class TrainShape extends Shape {
 		//spoortje
 		g.fillRect(30, 275+currentTrain*OFFSET,1170, 3);
 	
-		System.out.println("de trein is getekend");
+//		System.out.println("de trein is getekend");
 	}
 
 

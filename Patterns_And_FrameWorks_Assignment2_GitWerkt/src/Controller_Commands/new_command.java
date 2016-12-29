@@ -25,23 +25,22 @@ public class new_command extends Command {
 		boolean b = true;
 		System.out.println("test 0");
 		if (characters[0].equals("new") && characters[1].equals("train")) {
-			System.out.println("test 0");
+
 			// voor het aanmaken van een nieuwe trein.
 			if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
-				System.out.println("test 1");
+
+				//aanmaken locomotive, toevegen aan een complete trein	
 				Locomotive locomotive = new Locomotive();
-				System.out.println("test 2");
 				locomotive.setname(characters[2]);
-				System.out.println("test 3");
 				ArrayList<Wagon> wagons = new ArrayList<Wagon>();
-				System.out.println("test 4");
 				CompleteTrain blabla = new CompleteTrain(locomotive);
-				System.out.println("test 5");
-				//completed.add(blabla);
 				System.out.println(locomotive.getName());
+				
+				//het treinobject opslaan bij de superklass en toewijzen aan het huidige station
 				super.treintje = blabla;
-				System.out.println(blabla.toString());
 				super.setTrainToStation();
+				
+				//voor het uitprinten van de lijst met treinen in het station
 				System.out.println(treintje.getLocomotive().getName());
 				ArrayList<CompleteTrain> comp = new ArrayList<CompleteTrain>();
 				comp = super.train.getCompleteTrains();

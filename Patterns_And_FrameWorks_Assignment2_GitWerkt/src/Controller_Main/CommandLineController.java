@@ -1,5 +1,6 @@
 package Controller_Main;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,9 +23,13 @@ import javax.swing.JTextField;
 import Controller_Commands.Command;
 import Domain.CompleteTrain;
 import Domain.TrainStation;
+import Domain.Wagon;
 import GUI.CommandLineOutputStream;
 import GUI.GraphicalDrawer;
 import GUI.GraphicalDrawerCommandLine;
+import GUI.GraphicalShapeDrawer;
+import GUI.TrainShape;
+import GUI.WagonShape;
 
 public class CommandLineController implements ActionListener, KeyListener, Observer {
 	private TrainStation station;
@@ -32,6 +37,20 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 	private JPanel drawPanel = null;
 	private JTextField TextCommandLine = null;
 	private GraphicalDrawerCommandLine graphicalDrawerCommandLine;
+	
+	
+	// aanmaken voor het tekenen van de treinen
+	private GraphicalShapeDrawer shapedraw = new GraphicalShapeDrawer();
+	TrainShape trainShape = new TrainShape();
+	WagonShape wagonShape = new WagonShape();
+	
+	private int currentNumberOfWagons = 1;
+	private int currentTrainNumber = -1;
+	private String selectedTrain;
+	
+	private ArrayList<CompleteTrain> compTrains;
+	private ArrayList<Wagon> wagons;
+	
 
 	public CommandLineController(TrainStation station) {
 		this.station = station;
@@ -85,6 +104,10 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			
 			for(CompleteTrain t : trains){
 				System.out.println("doet ie et of doet ie et niet"+t.getLocomotive().getName());
+			
+			
+			teken();
+			
 			}
 		/*	if (a == false) {
 				teken();
@@ -103,7 +126,47 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 		executeCommand();
 	}
 
-	public void teken() {
+	
+	public void teken(){
+		/*clearScreen();*/
+		
+		compTrains = new ArrayList<CompleteTrain>();
+		compTrains = station.getCompleteTrains();
+		
+		for (CompleteTrain train : compTrains){
+			currentNumberOfWagons = 1;
+
+			selectedTrain = train.getLocomotive().getName(); 
+			System.out.println("komt ie hier?"+selectedTrain);
+			//teken de locomotive
+			shapedraw.drawShapeObject(trainShape,selectedTrain, currentTrainNumber, drawPanel);
+
+			
+			if(train.getAmoundOfWagons()>0){
+				wagons = train.getWagons();
+				for(Wagon wag : wagons){
+					shapedraw.drawShapeObjectWagon(wagonShape, wag.getName(),currentTrainNumber, currentNumberOfWagons, drawPanel);
+					currentNumberOfWagons +=1;
+				}
+			}
+			currentTrainNumber +=1;
+		}
+		currentTrainNumber = -1;
+	}
+	
+/*	private void clearScreen(){
+		Graphics g = jPanel1.getGraphics();
+		g.clearRect(0, 0, 1400, 1200);
+	}*/
+
+
+	
+	
+	
+	
+	
+	
+	/*public void teken() {
 		String waarde;
 		String[] split;
 		BufferedReader reader = new BufferedReader(
@@ -125,7 +188,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			e.printStackTrace();
 		}
 		TextCommandLine.setText("");
-	}
+	}*/
 
 	public void keyPressed(KeyEvent event) {
 		// TODO Auto-generated method stub

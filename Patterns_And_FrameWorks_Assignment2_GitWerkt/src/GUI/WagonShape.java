@@ -37,7 +37,7 @@ public class WagonShape extends Shape{
 					
 			//naam van type wagon
 			g.drawString(wagonName,40+currentNumberOfWagons*TRAINLENGTH,220+currentTrain*OFFSET);
-			System.out.println("Wagon is getekent");
+//			System.out.println("Wagon is getekent");
 			
 	}
 
