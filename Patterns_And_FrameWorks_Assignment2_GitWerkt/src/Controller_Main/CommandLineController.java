@@ -33,6 +33,7 @@ import GUI.WagonShape;
 
 public class CommandLineController implements ActionListener, KeyListener, Observer {
 	private TrainStation station;
+	
 	private JButton executeButton = null;
 	private JPanel drawPanel = null;
 	private JTextField TextCommandLine = null;
@@ -101,6 +102,7 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			station = object.returnTrainstationToController();
 			ArrayList<CompleteTrain> trains;
 			trains = station.getCompleteTrains();
+			
 			
 			for(CompleteTrain t : trains){
 				System.out.println("doet ie et of doet ie et niet"+t.getLocomotive().getName());

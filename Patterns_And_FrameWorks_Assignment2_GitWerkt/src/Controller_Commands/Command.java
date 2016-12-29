@@ -4,12 +4,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import Domain.CompleteTrain;
+import Domain.Locomotive;
 import Domain.TrainStation;
+import Domain.Wagon;
 
 public class Command {
 
 	CompleteTrain treintje;
+	Locomotive loco;
 	TrainStation train;
+	Wagon wagentje;
 	String[] characters;
 	String outputMessage = "";
 
@@ -35,11 +39,18 @@ public class Command {
 		this.characters = characters;
 	}
 	
-	public void setTrainToStation(){
-		train.addTrain(treintje);
-		returnTrainstationToController();
-		
+	public void setLocomotiveToStation(){
+		train.addLocomotive(loco);
+//		returnTrainstationToController();		
 	}
+	
+	public void setWagonToTrainstation(){
+		train.addWagon(wagentje);
+	}
+	
+	
+	
+	
 
 	public boolean GeldigheidCommandcontrole(String waarde, String character) {
 

@@ -4,14 +4,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TrainStation extends java.util.Observable {
-	private ArrayList<CompleteTrain> completeTrains;
+	private ArrayList<CompleteTrain> completeTrains = new ArrayList<CompleteTrain>();
+	private ArrayList<Locomotive> locomotives = new ArrayList<Locomotive>() ;
+	
+	
+	
+	
+	public ArrayList<Locomotive> getLocomotives() {
+		return locomotives;
+	}
+	public void setLocomotives(ArrayList<Locomotive> locomotives) {
+		this.locomotives = locomotives;
+	}
+	public ArrayList<Wagon> getWagons() {
+		return wagons;
+	}
+	public void setWagons(ArrayList<Wagon> wagons) {
+		this.wagons = wagons;
+	}
+
+	private ArrayList<Wagon> wagons = new ArrayList<Wagon>();
 	/*private HashMap<String,Locomotive> locomotiveOpslag = new HashMap<String, Locomotive>();
 	private HashMap<String,CompleteTrain> completeTrainsOpslag = new HashMap<String, CompleteTrain>();
 	private HashMap<String,Wagon> wagonOpslag = new HashMap<String, Wagon>();
 	*/
 	
 	public TrainStation() {
-		completeTrains = new ArrayList<CompleteTrain>();
+
 	}
 	// observable udaten.
 	private void update(){
@@ -33,6 +52,14 @@ public class TrainStation extends java.util.Observable {
 	public void addTrain(CompleteTrain train) {
 		completeTrains.add(train);
 	}
+	public void addLocomotive(Locomotive l){
+		locomotives.add(l);
+	}
+	
+	public void addWagon(Wagon w){
+		wagons.add(w);
+	}
+	
 
 	public void removeTrain(String verwijderWaarde) {
 		for (CompleteTrain zoekTrain : completeTrains) {

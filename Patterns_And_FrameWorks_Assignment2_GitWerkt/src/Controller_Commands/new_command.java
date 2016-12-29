@@ -12,7 +12,8 @@ import Domain.Wagon;
 public class new_command extends Command {
 
 	TrainStation trains;
-	ArrayList<CompleteTrain> completed;
+	ArrayList<Locomotive> completed;
+	ArrayList<Wagon> wagons;
 
 	Wagon w = null; 
 
@@ -23,7 +24,6 @@ public class new_command extends Command {
 	public boolean execute() {
 		
 		boolean b = true;
-		System.out.println("test 0");
 		if (characters[0].equals("new") && characters[1].equals("train")) {
 
 			// voor het aanmaken van een nieuwe trein.
@@ -32,21 +32,11 @@ public class new_command extends Command {
 				//aanmaken locomotive, toevegen aan een complete trein	
 				Locomotive locomotive = new Locomotive();
 				locomotive.setname(characters[2]);
-				ArrayList<Wagon> wagons = new ArrayList<Wagon>();
-				CompleteTrain blabla = new CompleteTrain(locomotive);
-				System.out.println(locomotive.getName());
 				
+				loco = locomotive;
 				//het treinobject opslaan bij de superklass en toewijzen aan het huidige station
-				super.treintje = blabla;
-				super.setTrainToStation();
+				super.setLocomotiveToStation();
 				
-				//voor het uitprinten van de lijst met treinen in het station
-				System.out.println(treintje.getLocomotive().getName());
-				ArrayList<CompleteTrain> comp = new ArrayList<CompleteTrain>();
-				comp = super.train.getCompleteTrains();
-				for(CompleteTrain t : comp){
-					System.out.println("aaaaa"+t.getLocomotive().getName());
-				}
 				super.setErrorMessage("De trein " + locomotive.toString() + " is aangemaakt \n");
 			} else {
 				super.setErrorMessage("De command is verkeerd meegegeven, vb. ; 'new train tr1' \n");
@@ -58,55 +48,56 @@ public class new_command extends Command {
 		// passenger wagon: "new wagon <<WagonID>> numseats <<NUMBER>>" 
 		// OR 
 		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
-		else if (characters[0].equals("new") && characters[1].equals("wagon")) {
-			System.out.println(super.treintje.getLocomotive().getName());
-				if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
+		else if (characters[3].equals("maxweight")|| characters[3].equals("numseats") ||	super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2]) || super.GeldigheidCommandcontrole("[0-9]*", characters[4])) {
 					System.out.println("test skeer");
 					if (characters[3].equals("maxweight")) {
-						System.out.println("test 1");
+						
+						//goodswagon aanmaken
 						String sMaxWeight = characters[4];
 						int iMaxWeight = Integer.parseInt(sMaxWeight.trim());
+						
+						
+						wagons = new ArrayList<Wagon>();
 						w = new GoodsWagon(characters[2], iMaxWeight);
-						System.out.println("test 2");
-						//wagons = new ArrayList<Wagon>();
-						System.out.println("test 3");
-						//wagons.add(w);
-						System.out.println("test 4");
-						//System.out.println(completetrain);
-						//completetrain.setWagons(wagons);
-						System.out.println("test 5");
+						wagons.add(w);
+						
+						wagentje = w;			
+						super.setWagonToTrainstation();
+
 				
 						super.setErrorMessage("er is een goederen wagon " + w.toString() + " aangemaakt \n");
+						b = false;
+						
 					} else if (characters[3].equals("numseats")) {
 						String sAmountPassengers = characters[4];
 						int iAmountPassengers = Integer.parseInt(sAmountPassengers.trim());
 						String naam = characters[2];
+						
+						wagons = new ArrayList<Wagon>();
 						w = new PassengerWagon(naam, iAmountPassengers);
+						wagons.add(w);
 						
-						//wagons = new ArrayList<Wagon>();
-						//wagons.add(w);
-						//completetrain.setWagons(wagons);
-						//completetrain.addWagons(w);
-						super.setErrorMessage("er is een passagiers wagon " + w.toString() + " aangemaakt \n");
-					} else {
-						w = new PassengerWagon(characters[2], 20);
-						
-						//wagons = new ArrayList<Wagon>();
-						//wagons.add(w);
-						//completetrain.setWagons(wagons);
-						
-						//completetrain.addWagons(w);
+						wagentje = w;			
+						super.setWagonToTrainstation();
+			
 						super.setErrorMessage("er is een passagiers wagon " + w.toString() + " aangemaakt \n");
 						b = false;
 					}
-				} else {
-					super.setErrorMessage("De command is verkeerd meegegeven, example wg1 Passenger to tr1 \n");
-					b = false;
-				}
-			} 
-		 else {
-			super.setErrorMessage("Het nieuwe object dat je wilt aanmaken heeft andere syntax\n");
-		}
+				} 
+		else if(characters[0].equals("new") && characters[1].equals("wagon")|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])){
+						
+						System.out.println("!");
+						wagons = new ArrayList<Wagon>();
+						w = new PassengerWagon(characters[2], 20);							
+						wagons.add(w);
+						
+						wagentje = w;			
+						super.setWagonToTrainstation();
+						
+						super.setErrorMessage("er is een passagiers wagon " + w.getName() + " aangemaakt \n");
+						b = false;
+					}
+						
 		return b;
 
 	}
