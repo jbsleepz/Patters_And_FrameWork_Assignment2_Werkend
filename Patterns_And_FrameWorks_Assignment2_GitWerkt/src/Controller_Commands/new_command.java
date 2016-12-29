@@ -14,10 +14,14 @@ import Domain.Wagon;
 		// goods wagon: "new wagon <<WagonID>> maxweight <<NUMBER>>"
 public class new_command extends Command {
 
-	TrainStation trains;
 	ArrayList<Locomotive> completed;
 	ArrayList<Wagon> wagons = new ArrayList<Wagon>();
-	Wagon w = null;
+	Wagon w;
+	
+	//jelle extra
+	CompleteTrain comptr = null;
+	String selectedTrain = null;
+	String selectedWagon = null;;
 	
 	public new_command() {
 		super();
@@ -25,45 +29,90 @@ public class new_command extends Command {
 
 	@Override
 	public boolean execute() {
+		
+		
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//									TRAINS AANMAKEN
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// higsdghsdhgsdhg
+		
+
 		boolean b = true;
-		if (characters[0].equals("new") && characters[1].equals("train") || characters[2].isEmpty()) {
+		if (characters[0].equals("new") && characters[1].equals("train")) {
 
-			// voor het aanmaken van een nieuwe trein.
+			// voor het aanmaken van een nieuwe locomotief.
 			if (super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
-				
-				String selectedTrain = "12";
-				
+				selectedTrain = characters[2];
+				System.out.println("eerste invoer "+selectedTrain);
+				System.out.println("123");
+				//als er al treinen zijn
+				if(train.geefAantalTreinen()> 0){
+					System.out.println("!!!!!!!!");
+					if(train.zoekTrain(characters[2])==true){
+						System.out.println("........");
+					System.out.println("trein" + characters[2]+ " bestaat al, kan niet opnieuw aanmaken");
+					}
+					
+					else{
+						System.out.println("abc");
+						//maak een locomotief aan
+						Locomotive loc = new Locomotive(characters[2]);
+						//voeg locomotief aan een trein toe
+						comptr = new CompleteTrain(loc);
+						comptr.setWagons(wagons);
+						//zet de trein in het treinstation
+						train.addTrain(comptr);
+						
+						System.out.println("trein: "+ characters[2] + " bestaat nog niet");
+					}
+				}
 
-				// aanmaken locomotive, toevegen aan een complete trein
-				Locomotive locomotive = new Locomotive();
-				locomotive.setname(characters[2]);
-
-				loco = locomotive;
-				// het treinobject opslaan bij de superklass en toewijzen aan
-				// het huidige station
-				super.setLocomotiveToStation();
-
-				super.setErrorMessage("De trein " + locomotive.toString() + " is aangemaakt \n");
-			} else {
-				super.setErrorMessage("De command is verkeerd meegegeven, vb. ; 'new train tr1' \n");
-				b = false;
+				//als die trein nog niet bestaat --> toevoegen
+				else{
+					System.out.println("abc");
+					//maak een locomotief aan
+					Locomotive loc = new Locomotive(characters[2]);
+					//voeg locomotief aan een trein toe
+					comptr = new CompleteTrain(loc);
+					comptr.setWagons(wagons);
+					//zet de trein in het treinstation
+					train.addTrain(comptr);
+					
+					System.out.println("trein: "+ characters[2] + " bestaat nog niet");
+				}
 			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		//									WAGONS AANMAKEN
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		} else if (characters[1].equals("wagon")
-				|| super.GeldigheidCommandcontrole("[a-z0-9]*", characters[2])) {
+		
+		
+		else if  (characters[0].equals("new") && characters[1].equals("wagon")) {
 
 			if(characters.length == 3){
-				if(characters[0].equals("new") || characters[1].equals("wagon") || characters[3].isEmpty() == true ){
-					System.out.println("Werkt dit");
-					w = new PassengerWagon(characters[2], 20);
-					wagons.add(w);
-					wagentje = w;
-					super.setWagonToTrainstation();
-					super.setErrorMessage("er is een passagiers wagon " + w.getName() + " aangemaakt \n");
+					
+				selectedWagon = characters[2];
+				System.out.println(selectedWagon);
+				
+				//als er al wagons zijn en de wagon bestaat al
+				if(train.geefAantalWagons() > 0 && train.bestaatWagon(selectedWagon) == true){
+					System.out.println("Wagon met naam: " + selectedWagon + " bestaat al");
 				}
-			} else {
+				//anders wagon aanmaken en toevoegen aan het treinstation
+				else{
+					w = new PassengerWagon(selectedWagon, 20);	
+					train.addWagon(w);
+					System.out.println("Wagon: "+ selectedWagon + " is nu nieuw aangemaakt");
+					}
+				}
+
+			 else {
 			// goodswagon aanmaken
 				if (characters[3].equals("maxweight") && super.GeldigheidCommandcontrole("[0-9999]*", characters[4])) {
 					String sMaxWeight = characters[4];
@@ -94,7 +143,8 @@ public class new_command extends Command {
 			}
 			
 		}
-
 		return b;
 	}
 }
+
+

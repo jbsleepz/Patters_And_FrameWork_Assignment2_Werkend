@@ -4,33 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TrainStation extends java.util.Observable {
-	private ArrayList<CompleteTrain> completeTrains = new ArrayList<CompleteTrain>();
-	private ArrayList<Locomotive> locomotives = new ArrayList<Locomotive>() ;
+	String name = "bla";
+	private ArrayList<CompleteTrain> completeTrains;
+	private ArrayList<Wagon> wagons = new ArrayList<Wagon>();
+	CompleteTrain selectedTrain;
+	Wagon selectedWagon;
 	
-	
-	
-	
-	public ArrayList<Locomotive> getLocomotives() {
-		return locomotives;
+	public TrainStation() {
+		this.completeTrains = new ArrayList<CompleteTrain>()
+;	}
+	public String getName(){
+		return name;
 	}
-	public void setLocomotives(ArrayList<Locomotive> locomotives) {
-		this.locomotives = locomotives;
-	}
+
 	public ArrayList<Wagon> getWagons() {
 		return wagons;
 	}
 	public void setWagons(ArrayList<Wagon> wagons) {
 		this.wagons = wagons;
-	}
-
-	private ArrayList<Wagon> wagons = new ArrayList<Wagon>();
-	/*private HashMap<String,Locomotive> locomotiveOpslag = new HashMap<String, Locomotive>();
-	private HashMap<String,CompleteTrain> completeTrainsOpslag = new HashMap<String, CompleteTrain>();
-	private HashMap<String,Wagon> wagonOpslag = new HashMap<String, Wagon>();
-	*/
-	
-	public TrainStation() {
-
 	}
 	// observable udaten.
 	private void update(){
@@ -52,9 +43,7 @@ public class TrainStation extends java.util.Observable {
 	public void addTrain(CompleteTrain train) {
 		completeTrains.add(train);
 	}
-	public void addLocomotive(Locomotive l){
-		locomotives.add(l);
-	}
+
 	
 	public void addWagon(Wagon w){
 		wagons.add(w);
@@ -78,30 +67,85 @@ public class TrainStation extends java.util.Observable {
 		this.completeTrains = completeTrains;
 	}
 
-	public CompleteTrain zoekTrain(String naam) {
-		completeTrains = getCompleteTrains();
-		CompleteTrain heleTrein= new CompleteTrain();
+	public boolean zoekTrain(String naam) {
+		boolean b = false;
 		for (CompleteTrain gevonden : completeTrains) {
 			if (gevonden.getLocomotive().getName().equals(naam)) {
-				heleTrein = gevonden;
+				b = true;
 			}
 		}
-		return heleTrein;
+		return b;
 	}
 
 	public boolean TrainExists(String id) {
 		boolean b = false;
 
-		for (CompleteTrain zoekTrain : completeTrains) {
-			Locomotive loco = zoekTrain.getLocomotive();
-			String waardeNaam = loco.getName();
-			if (waardeNaam.equals(id)) {
+		if(completeTrains.isEmpty()== false){
+
+			for (CompleteTrain zoekTrain : completeTrains) {
+				Locomotive loco = zoekTrain.getLocomotive();
+				String waardeNaam = loco.getName();
+				if (waardeNaam.equals(id)) {
+					b = true;
+					break;
+				}
+			}
+		}
+		else{
+			b = false;
+		}
+		return b;
+	}
+	
+	public int geefAantalTreinen(){
+		int aantal = 0;
+		for(CompleteTrain t : completeTrains){
+			aantal +=1;			
+		}
+		return aantal;
+	}
+	
+	public int geefAantalWagons(){
+		int aantal = 0;
+		for(Wagon w : wagons){
+			aantal +=1;
+		}
+		return aantal;
+	}
+	
+	public boolean bestaatWagon(String name){
+		boolean b = false;
+		for(Wagon w : wagons){
+			if (w.getName().equals(name)){
 				b = true;
-				break;
 			}
 		}
 		return b;
 	}
+
+		
+
+	
+	public CompleteTrain getSelectedTrain(String name){
+		
+		for(CompleteTrain t : completeTrains){
+			if(t.getLocomotive().getName().equals(name)){
+				selectedTrain = t;
+				}			
+			}
+		return selectedTrain;
+	}
+	
+	public Wagon getSelectedWagon(String naam){
+		
+		for(Wagon w : wagons){
+			if(w.getName().equals(naam)){
+				selectedWagon = w;
+				}
+			}
+		return selectedWagon;
+		}
+	
 
 	// om de treinen/wagons op textvlak te tonen.
 	public String getData() {

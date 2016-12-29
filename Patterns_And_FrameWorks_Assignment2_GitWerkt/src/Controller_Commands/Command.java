@@ -38,11 +38,7 @@ public class Command {
 	public void setParamaters(String[] characters) {
 		this.characters = characters;
 	}
-	
-	public void setLocomotiveToStation(){
-		train.addLocomotive(loco);
-//		returnTrainstationToController();		
-	}
+
 	
 	public void setWagonToTrainstation(){
 		train.addWagon(wagentje);

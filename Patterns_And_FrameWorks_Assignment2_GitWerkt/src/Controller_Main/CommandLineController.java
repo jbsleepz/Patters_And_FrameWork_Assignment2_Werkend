@@ -32,7 +32,7 @@ import GUI.TrainShape;
 import GUI.WagonShape;
 
 public class CommandLineController implements ActionListener, KeyListener, Observer {
-	private TrainStation station;
+	private TrainStation station = new TrainStation();
 	
 	private JButton executeButton = null;
 	private JPanel drawPanel = null;
@@ -99,18 +99,11 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			object.setTrainStation(station);
 			object.setParamaters(characters);
 			Boolean a = object.execute();
-			station = object.returnTrainstationToController();
-			ArrayList<CompleteTrain> trains;
-			trains = station.getCompleteTrains();
+
 			
 			
-			for(CompleteTrain t : trains){
-				System.out.println("doet ie et of doet ie et niet"+t.getLocomotive().getName());
-				
-				
 			teken();
-			
-			}
+
 		/*	if (a == false) {
 				teken();
 			}*/
@@ -132,16 +125,15 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 	public void teken(){
 		clearScreen();
 		
-		compTrains = new ArrayList<CompleteTrain>();
 		compTrains = station.getCompleteTrains();
-		System.out.println(compTrains);
-		System.out.println(compTrains);
+		/*CompleteTrain s = compTrains.get(0);*/
+
+
 		
 		for (CompleteTrain train : compTrains){
-			/*currentNumberOfWagons = 1;
-			System.out.println(train);
+			currentNumberOfWagons = 1;
 			selectedTrain = train.getLocomotive().getName(); 
-			System.out.println("komt ie hier?"+selectedTrain);
+
 			//teken de locomotive
 			shapedraw.drawShapeObject(trainShape,selectedTrain, currentTrainNumber, drawPanel);
 
@@ -156,10 +148,11 @@ public class CommandLineController implements ActionListener, KeyListener, Obser
 			currentTrainNumber +=1;
 		}
 		currentTrainNumber = -1;
-	}*/
-			System.out.println("ik heb een trein");
-		}
 	}
+
+
+
+	
 	
 private void clearScreen(){
 		Graphics g = drawPanel.getGraphics();

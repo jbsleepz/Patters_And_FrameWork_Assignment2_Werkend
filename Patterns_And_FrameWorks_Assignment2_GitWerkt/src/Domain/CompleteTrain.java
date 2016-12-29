@@ -24,10 +24,7 @@ public class CompleteTrain {
 
 	public void addWagons(Wagon wagon) {
 		wagons.add(wagon);
-		if ( wagon instanceof PassengerWagon){
-			locomotive.setTotaalAantalStoelen(((PassengerWagon) wagon).getAmountPassengers());
 		}
-	}
 	
 	public void removeWagons(Wagon wagon) {
 		wagons.remove(wagon);
