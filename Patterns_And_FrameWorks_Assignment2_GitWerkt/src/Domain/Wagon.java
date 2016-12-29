@@ -9,6 +9,7 @@ public abstract class Wagon {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public abstract String toString();
 	
 
 }

@@ -3,7 +3,7 @@ package Domain;
 import java.util.ArrayList;
 
 public class CompleteTrain {
-	private String id;
+	private String idCompleteTrain;
 	private Locomotive locomotive;
 	private ArrayList<Wagon> wagons;
 	
@@ -24,10 +24,16 @@ public class CompleteTrain {
 
 	public void addWagons(Wagon wagon) {
 		wagons.add(wagon);
+		if ( wagon instanceof PassengerWagon){
+			locomotive.setTotaalAantalStoelen(((PassengerWagon) wagon).getAmountPassengers());
+		}
 	}
 	
-	public void removeWagons(String wagon) {
+	public void removeWagons(Wagon wagon) {
 		wagons.remove(wagon);
+		if ( wagon instanceof PassengerWagon){
+			locomotive.verwijderPlaatsen(((PassengerWagon) wagon).getAmountPassengers());
+		}
 	}
 	public Wagon zoekWagon(String naam){
 		Wagon wagon = null;
@@ -74,20 +80,23 @@ public class CompleteTrain {
 			}
 		}
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public void setLocomotive(Locomotive locomotive) {
 		this.locomotive = locomotive;
+		setIdCompleteTrain(locomotive.getName());
 	}
+
+
+	public String getIdCompleteTrain() {
+		return idCompleteTrain;
+	}
+
+	public void setIdCompleteTrain(String idCompleteTrain) {
+		this.idCompleteTrain = idCompleteTrain;
+	}
+	
+	
 	public String toString(){
-		return "" + id;
+		return "" + idCompleteTrain;
 	}
 }
 	
